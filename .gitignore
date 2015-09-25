@@ -3,12 +3,10 @@
 *.g_x
 RemoteControl/Documentation
 RemoteControl/Generated_Code
-RemoteControl/Static_Code
 RemoteControl/Debug
 
 Sumo/Documentation
 Sumo/Generated_Code
-Sumo/Static_Code
 Sumo/Debug
 
 ProjectInfo.xml
