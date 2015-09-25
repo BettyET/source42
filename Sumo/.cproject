@@ -48,9 +48,13 @@
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.std.962402442" name="Language standard" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.std" useByScannerDiscovery="true" value="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.std.c99" valueType="enumerated"/>
 								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths.400767581" name="Include paths (-I)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Static_Code/PDD&quot;"/>
+									<listOptionValue builtIn="false" value="../../Common"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Static_Code/IO_Map&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Generated_Code&quot;"/>
+								</option>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs.1159934282" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.c.compiler.defs" valueType="definedSymbols">
+									<listOptionValue builtIn="false" value="PL_COFIG_SUMO"/>
 								</option>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.1342439843" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input"/>
 							</tool>
@@ -61,6 +65,7 @@
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Sources&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${ProjDirPath}/Generated_Code&quot;"/>
 								</option>
+								<option id="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs.1275111068" name="Defined symbols (-D)" superClass="ilg.gnuarmeclipse.managedbuild.cross.option.cpp.compiler.defs" useByScannerDiscovery="false" valueType="definedSymbols"/>
 								<inputType id="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input.860279935" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.cpp.compiler.input"/>
 							</tool>
 							<tool id="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker.464476953" name="Cross ARM C Linker" superClass="ilg.gnuarmeclipse.managedbuild.cross.tool.c.linker">
