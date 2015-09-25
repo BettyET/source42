@@ -12,6 +12,6 @@
 
 void APP_run(void){
 	while(1){
-		LEDB_On();
+
 	}
 }

@@ -3,7 +3,7 @@
   <Header>
     <Name>RemoteControl</Name>
     <SavedBy>User</SavedBy>
-    <ModificationStamp>3</ModificationStamp>
+    <ModificationStamp>4</ModificationStamp>
     <Date>2015-09-18</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -4525,7 +4525,7 @@
   <Bean>
     <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
-    <Name>LEDR</Name>
+    <Name>LED1</Name>
     <CompNumb>3</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -4540,7 +4540,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>LEDR</Value>
+        <Value>LED1</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>LEDonWithInitialization</ItemSymbol>
@@ -5313,7 +5313,7 @@
   <Bean>
     <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
-    <Name>LEDB</Name>
+    <Name>LED2</Name>
     <CompNumb>6</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -5328,7 +5328,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>LEDB</Value>
+        <Value>LED2</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>LEDonWithInitialization</ItemSymbol>
@@ -6101,7 +6101,7 @@
   <Bean>
     <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
     <BeanType>LED</BeanType>
-    <Name>LEDG</Name>
+    <Name>LED3</Name>
     <CompNumb>9</CompNumb>
     <CompEnabled>true</CompEnabled>
     <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
@@ -6116,7 +6116,7 @@
         <ItemSymbol>DeviceName</ItemSymbol>
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
-        <Value>LEDG</Value>
+        <Value>LED3</Value>
       </ItemState>
       <ItemState>
         <ItemSymbol>LEDonWithInitialization</ItemSymbol>
