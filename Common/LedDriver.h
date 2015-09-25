@@ -13,6 +13,7 @@ typedef enum Leds_e{
 	led3
 }Leds;
 
+void Led_Init(const Leds l);
 void Led_On(const Leds led);
 void Led_Off(const Leds led);
 

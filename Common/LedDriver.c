@@ -16,14 +16,14 @@ void Led_Init(const Leds l)
 {
 	switch(l)
 	{
-	case 1:
+	case led1:
 		LED1_Init();
 		break;
-	case 2:
+	case led2:
 		LED2_Init();
 		break;
 #ifdef PL_COFIG_REMOTE
-	case 3:
+	case led3:
 		LED3_Init();
 		break;
 #endif
@@ -34,14 +34,14 @@ void Led_On(const Leds l)
 {
 	switch(l)
 	{
-	case 1:
+	case led1:
 		LED1_On();
 		break;
-	case 2:
+	case led2:
 		LED2_On();
 		break;
 #ifdef PL_COFIG_REMOTE
-	case 3:
+	case led3:
 		LED3_On();
 		break;
 #endif
@@ -52,14 +52,14 @@ void Led_Off(const Leds l)
 {
 	switch(l)
 	{
-	case 1:
+	case led1:
 		LED1_Off();
 		break;
-	case 2:
+	case led2:
 		LED2_Off();
 		break;
 #ifdef PL_COFIG_REMOTE
-	case 3:
+	case led3:
 		LED3_Off();
 		break;
 #endif
