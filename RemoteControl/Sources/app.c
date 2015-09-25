@@ -5,13 +5,18 @@
  *      Author: User
  */
 #include "app.h"
-#include "LEDR.h"
-#include "LEDG.h"
-#include "LEDB.h"
+#include "LedDriver.h"
+#include "Wait1.h"
 
 
-void APP_run(void){
-	while(1){
-
+void APP_run(void)
+{
+	Led_Init(led1);
+	while(1)
+	{
+		Led_On(led1);
+		WAIT1_Waitms(700);
+		Led_Off(led1);
+		WAIT1_Waitms(700);
 	}
 }

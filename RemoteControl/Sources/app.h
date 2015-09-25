@@ -9,7 +9,7 @@
 #define SOURCES_APP_H_
 
 
-
+void APP_run(void);
 
 
 #endif /* SOURCES_APP_H_ */
