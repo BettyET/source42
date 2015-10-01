@@ -11,12 +11,12 @@
 
 void APP_run(void)
 {
-	Led_Init(led1);
+	Led_Init(all);
 	while(1)
 	{
-		Led_On(led1);
+		Led_On(all);
 		WAIT1_Waitms(700);
-		Led_Off(led1);
+		Led_Off(all);
 		WAIT1_Waitms(700);
 	}
 }

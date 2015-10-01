@@ -10,7 +10,8 @@
 typedef enum Leds_e{
 	led1,
 	led2,
-	led3
+	led3,
+	all
 }Leds;
 
 void Led_Init(const Leds l);

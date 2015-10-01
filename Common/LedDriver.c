@@ -27,6 +27,13 @@ void Led_Init(const Leds l)
 		LED3_Init();
 		break;
 #endif
+	case all:
+		LED1_Init();
+		LED2_Init();
+#ifdef 	PL_COFIG_REMOTE
+		LED3_Init();
+#endif
+		break;
 	}
 }
 
@@ -45,6 +52,13 @@ void Led_On(const Leds l)
 		LED3_On();
 		break;
 #endif
+	case all:
+		LED1_On();
+		LED2_On();
+#ifdef 	PL_COFIG_REMOTE
+		LED3_On();
+#endif
+		break;
 	}
 }
 
@@ -63,6 +77,13 @@ void Led_Off(const Leds l)
 		LED3_Off();
 		break;
 #endif
+	case all:
+		LED1_Off();
+		LED2_Off();
+#ifdef 	PL_COFIG_REMOTE
+		LED3_Off();
+#endif
+		break;
 	}
 }
 
