@@ -41,6 +41,7 @@
 #include "BitIoLdd3.h"
 #include "WAIT1.h"
 #include "CS1.h"
+#include "HF1.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
@@ -49,6 +50,7 @@
 /* User includes (#include below this line is not maintained by Processor Expert) */
 #include "app.h"
 /*lint -save  -e970 Disable MISRA rule (6.3) checking. */
+
 int main(void)
 /*lint -restore Enable MISRA rule (6.3) checking. */
 {
