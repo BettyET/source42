@@ -11,27 +11,15 @@
 #include "Event.h"
 #include "LED1.h"
 
-void myEvents(EVNT_Handle event);
+
 
 void APP_run(void)
 {
 	Led_Init(all);
 	EVNT_Init();
-	EVNT_SetEvent(EVENT_LED_HEARTBEAT); 	// 1. Mal Event aufrufen
+
 	while(1)
 	{
-		WAIT1_Waitms(700);
-		EVNT_HandleEvent(myEvents);			//
 	}
 }
 
-void myEvents(EVNT_Handle event)
-{
-	switch(event)
-	{
-	case EVENT_LED_HEARTBEAT:
-		LED1_Neg();
-		EVNT_SetEvent(EVENT_LED_HEARTBEAT);
-		break;
-	}
-}

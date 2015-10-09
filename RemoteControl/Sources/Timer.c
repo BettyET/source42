@@ -6,12 +6,21 @@
  * This module implements the driver for all our timers.
   */
 
-#if PL_CONFIG_HAS_TIMER
 #include "Timer.h"
+#include "Event.h"
+#include "LED1.h"
+
+int i = 0;
+void myEvents(EVNT_Handle event);
 
 void TMR_OnInterrupt(void) {
-  /* this one gets called from an interrupt!!!! */
-  /*! \todo Add code for a blinking LED here */
+	i++;
+	if(i==(1000/TMR_TICK_MS)){
+		i = 0;
+		EVNT_SetEvent(EVENT_LED_HEARTBEAT); 	// Event setzen
+		EVNT_HandleEvent(myEvents);
+	}
+
 }
 
 void TMR_Init(void) {
@@ -22,4 +31,13 @@ void TMR_Deinit(void) {
   /* nothing needed right now */
 }
 
-#endif /*PL_HAS_TIMER*/
+void myEvents(EVNT_Handle event)
+{
+	switch(event)
+	{
+	case EVENT_LED_HEARTBEAT:
+		LED1_Neg();
+		break;
+	}
+}
+
