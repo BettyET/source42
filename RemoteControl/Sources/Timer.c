@@ -9,6 +9,7 @@
 #include "Timer.h"
 #include "Event.h"
 #include "LED1.h"
+#include "CS1.h"
 
 #define BLINKING_DURATION_MS 1000
 
