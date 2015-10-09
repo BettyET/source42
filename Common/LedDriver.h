@@ -14,9 +14,10 @@ typedef enum Leds_e{
 	all
 }Leds;
 
-void Led_Init(const Leds l);
+void Led_Init(const Leds led);
 void Led_On(const Leds led);
 void Led_Off(const Leds led);
+void Led_Toggle(const Leds led);
 
 
 

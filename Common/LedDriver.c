@@ -87,5 +87,31 @@ void Led_Off(const Leds l)
 	}
 }
 
+void Led_Toggle(const Leds l)
+{
+	switch(l)
+	{
+	case led1:
+		LED1_Neg();
+		break;
+	case led2:
+		LED2_Neg();
+		break;
+#ifdef PL_COFIG_REMOTE
+	case led3:
+		LED3_Neg();
+		break;
+#endif
+	case all:
+		LED1_Neg();
+		LED2_Neg();
+#ifdef 	PL_COFIG_REMOTE
+		LED3_Neg();
+#endif
+		break;
+	}
+
+}
+
 
 
