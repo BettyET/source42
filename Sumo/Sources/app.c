@@ -18,12 +18,6 @@ void APP_run(void)
 	while(1)
 	{
 		EVNT_HandleEvent(myEvents);
-		EVNT_SetEvent(EVENT_LED_HEARTBEAT_ON);
-		EVNT_HandleEvent(myEvents);
-		WAIT1_Waitms(700);
-		EVNT_SetEvent(EVENT_LED_HEARTBEAT_OFF);
-		EVNT_HandleEvent(myEvents);
-		WAIT1_Waitms(700);
 	}
 }
 
@@ -31,11 +25,8 @@ void myEvents(EVNT_Handle event)
 {
 	switch(event)
 	{
-	case EVENT_LED_HEARTBEAT_ON:
-		Led_On(led1);
-		break;
-	case EVENT_LED_HEARTBEAT_OFF:
-		Led_Off(led1);
+	case EVENT_LED_HEARTBEAT:
+		Led_Toggle(led1);
 		break;
 	}
 }

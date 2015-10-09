@@ -6,10 +6,13 @@
  */
 
 #include "Timer.h"
+#include "Event.h"
 
 void TMR_OnInterrupt(void) {
   /* this one gets called from an interrupt!!!! */
   /*! \todo Add code for a blinking LED here */
+
+	EVNT_SetEvent(EVENT_LED_HEARTBEAT);
 
 }
 
