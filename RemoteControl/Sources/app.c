@@ -11,7 +11,7 @@
 #include "Event.h"
 #include "LED1.h"
 
-
+void myEvents(EVNT_Handle event);
 
 void APP_run(void)
 {
@@ -20,6 +20,16 @@ void APP_run(void)
 
 	while(1)
 	{
+		EVNT_HandleEvent(myEvents);
 	}
 }
 
+void myEvents(EVNT_Handle event)
+{
+	switch(event)
+	{
+	case EVENT_LED_HEARTBEAT:
+		LED1_Neg();
+		break;
+	}
+}
