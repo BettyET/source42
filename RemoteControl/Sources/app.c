@@ -29,7 +29,7 @@ void myEvents(EVNT_Handle event)
 	switch(event)
 	{
 	case EVENT_LED_HEARTBEAT:
-		LED1_Neg();
+		Led_Toggle(led1);
 		break;
 	}
 }
