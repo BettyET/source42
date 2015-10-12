@@ -11,7 +11,7 @@
 typedef enum EVNT_Handle {
   EVNT_STARTUP,            /*!< System startup Event */
   EVENT_LED_HEARTBEAT,     /*!< LED heartbeat */
-  EVENT_BUTTON_PRESSED,    /*!< Button pressed */
+  EVENT_BUTTON_1_PRESSED,    /*!< Button pressed */
   EVNT_NOF_EVENTS          /*!< Must be last one! */
 } EVNT_Handle;
 
