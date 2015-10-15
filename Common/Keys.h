@@ -26,7 +26,7 @@
 //} KEY_Buttons;
 
 
-  //#include "SW1.h"
+  #include "SW1.h"
   #define KEY1_Get()  (!(SW1_GetVal()))
     /*!< Macro which returns TRUE if key is pressed */
 

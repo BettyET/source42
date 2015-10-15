@@ -45,6 +45,8 @@
 #include "TI1.h"
 #include "TimerIntLdd1.h"
 #include "TU1.h"
+#include "SW1.h"
+#include "BitsIoLdd1.h"
 
 #ifdef __cplusplus
 extern "C" {
