@@ -10,7 +10,7 @@
 #ifndef KEYS_H_
 #define KEYS_H_
 
-
+void KEY_Scan(void);
 
 //typedef enum {
 //  KEY_BTN1, /*!< button 1 */
@@ -30,7 +30,7 @@
   #define KEY1_Get()  (!(SW1_GetVal()))
     /*!< Macro which returns TRUE if key is pressed */
 
-#if PL_COFIG_REMOTE
+#ifdef PL_CONFIG_REMOTE
 	#include "SW2.h"
 	#include "SW3.h"
 	#include "SW4.h"
@@ -45,5 +45,6 @@
 	#define KEY6_Get()  (!(SW6_GetVal()))
 	#define KEY7_Get()  (!(SW7_GetVal()))
 /*!< Macro which returns TRUE if key is pressed */
+
 #endif
 #endif /* KEYS_H_ */

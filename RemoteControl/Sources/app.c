@@ -12,6 +12,7 @@
 #include "LED1.h"
 #include "CLS1.h"
 #include "AS1.h"
+#include "Keys.h"
 
 void myEvents(EVNT_Handle event);
 
@@ -22,9 +23,8 @@ void APP_run(void)
 	CLS1_Init();
 	while(1)
 	{
-		CLS1_SendStr("Hello!\r\n", CLS1_GetStdio()->stdOut);
+		KEY_Scan();
 		EVNT_HandleEvent(myEvents);
-		WAIT1_Waitms(500);
 	}
 }
 
@@ -34,6 +34,27 @@ void myEvents(EVNT_Handle event)
 	{
 	case EVENT_LED_HEARTBEAT:
 		Led_Toggle(led1);
+		break;
+	case EVENT_BUTTON_1_PRESSED:
+		CLS1_SendStr("Button 1 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_2_PRESSED:
+		CLS1_SendStr("Button 2 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_3_PRESSED:
+		CLS1_SendStr("Button 3 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_4_PRESSED:
+		CLS1_SendStr("Button 4 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_5_PRESSED:
+		CLS1_SendStr("Button 5 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_6_PRESSED:
+		CLS1_SendStr("Button 6 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_7_PRESSED:
+		CLS1_SendStr("Button 7 pressed!\r\n", CLS1_GetStdio()->stdOut);
 		break;
 	}
 }

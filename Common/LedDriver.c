@@ -8,7 +8,7 @@
 #include "LedDriver.h"
 #include "LED1.h"
 #include "LED2.h"
-#ifdef PL_COFIG_REMOTE
+#ifdef PL_CONFIG_REMOTE
 #include "LED3.h"
 #endif
 
@@ -22,7 +22,7 @@ void Led_Init(const Leds l)
 	case led2:
 		LED2_Init();
 		break;
-#ifdef PL_COFIG_REMOTE
+#ifdef PL_CONFIG_REMOTE
 	case led3:
 		LED3_Init();
 		break;
@@ -30,7 +30,7 @@ void Led_Init(const Leds l)
 	case all:
 		LED1_Init();
 		LED2_Init();
-#ifdef 	PL_COFIG_REMOTE
+#ifdef 	PL_CONFIG_REMOTE
 		LED3_Init();
 #endif
 		break;

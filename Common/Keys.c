@@ -14,7 +14,7 @@ void KEY_Scan(void) {
   /*! \todo check handling all keys */
 	if ( KEY1_Get() )
 		EVNT_SetEvent(EVENT_BUTTON_1_PRESSED);
-#if PL_COFIG_REMOTE
+#ifdef PL_CONFIG_REMOTE
 	if ( KEY2_Get() )
 		EVNT_SetEvent(EVENT_BUTTON_2_PRESSED);
 	if ( KEY3_Get() )
