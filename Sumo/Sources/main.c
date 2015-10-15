@@ -44,6 +44,10 @@
 #include "TU1.h"
 #include "SW1.h"
 #include "BitsIoLdd1.h"
+#include "BT1.h"
+#include "Serial1.h"
+#include "ASerialLdd1.h"
+#include "UTIL1.h"
 /* Including shared modules, which are used for whole project */
 #include "PE_Types.h"
 #include "PE_Error.h"
