@@ -18,10 +18,7 @@ void APP_run(void)
 	Led_Init(led1);
 	while(1)
 	{
-
-		if(!SW1_GetBit(0)){
-			EVNT_SetEvent(EVENT_BUTTON_1_PRESSED);
-		}
+		KEY_Scan();
 
 		EVNT_HandleEvent(myEvents);
 	}
