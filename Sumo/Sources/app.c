@@ -11,6 +11,7 @@
 #include "Event.h"
 #include "SW1.h"
 #include "CLS1.h"
+#include "Keys.h"
 
 void myEvents(EVNT_Handle event);
 void APP_run(void)
