@@ -12,6 +12,7 @@
 
 #include <stdint.h>
 #include "LocalTrigger.h"
+#include "Timer.h"
 
 #define TRG_TICKS_MS  TMR_TICK_MS
   /*!< Defines the period at which TRG_IncTick gets called */

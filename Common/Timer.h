@@ -9,8 +9,8 @@
 #ifndef TIMER_H_
 #define TIMER_H_
 
-#define TMR_TICK_MS  10
-  /*!< we get called every 10 ms */
+#define TMR_TICK_MS  1
+  /*!< we get called every 1 ms */
 
 
 /*! \brief Function called from timer interrupt every TMR_TICK_MS. */

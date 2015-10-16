@@ -47,6 +47,8 @@
 #include "TU1.h"
 #include "SW1.h"
 #include "BitIoLdd3.h"
+#include "BUZ1.h"
+#include "BitIoLdd4.h"
 #include "UTIL1.h"
 #include "BT1.h"
 #include "Serial1.h"

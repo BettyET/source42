@@ -13,7 +13,9 @@
 #include "CLS1.h"
 #include "Keys.h"
 #include "Trigger.h"
+#include "Buzzer.h"
 #include <stddef.h> /* for NULL */
+
 
 void heartBeat(TRG_CallBackDataPtr data);
 void myEvents(EVNT_Handle event);
@@ -23,11 +25,11 @@ void APP_run(void)
 	TRG_Init();
 	EVNT_Init();
 	heartBeat(NULL);
+	BUZ_Init();
 
 	while(1)
 	{
 		KEY_Scan();
-
 		EVNT_HandleEvent(myEvents);
 	}
 }
@@ -37,7 +39,9 @@ void myEvents(EVNT_Handle event)
 	switch(event)
 	{
 	case EVENT_BUTTON_1_PRESSED:
+
 		CLS1_SendStr("Huhu! Button pressed!!\r\n", CLS1_GetStdio()->stdOut);
+		BUZ_Beep(500,1000);
 		break;
 	}
 
@@ -45,7 +49,7 @@ void myEvents(EVNT_Handle event)
 
 void heartBeat(TRG_CallBackDataPtr data)
 {
-	TRG_SetTrigger(TRG_HEARTBEAT, 50, &heartBeat, NULL);
+	TRG_SetTrigger(TRG_HEARTBEAT, 500, &heartBeat, NULL);
 	Led_Toggle(led1);
 }
 
