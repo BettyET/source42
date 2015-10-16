@@ -7,8 +7,9 @@
 
 #include "Timer.h"
 #include "Event.h"
+#include "Trigger.h"
 
-#define BLINKING_DURATION_MS 1000
+#define BLINKING_DURATION_MS 10
 
 void TMR_OnInterrupt(void) {
 
@@ -17,7 +18,7 @@ void TMR_OnInterrupt(void) {
 	count++;
 	if(count==(BLINKING_DURATION_MS/TMR_TICK_MS)){
 		count = 0;
-		EVNT_SetEvent(EVENT_LED_HEARTBEAT);
+		TRG_IncTick();
 	}
 }
 

@@ -11,17 +11,10 @@
 #define TRIGGER_H_
 
 #include <stdint.h>
+#include "LocalTrigger.h"
 
 #define TRG_TICKS_MS  TMR_TICK_MS
   /*!< Defines the period at which TRG_IncTick gets called */
-
-/*! \brief Triggers which can be used from the application */
-typedef enum {
-  /*! \todo Extend the list of triggers as needed */
-  TRG_BUZ_BEEP, /*!< Buzzer beep */
-  TRG_KEYPRESS, /*!< key debounce */
-  TRG_NOF_TRIGGERS /*!< Must be last! */
-} TRG_TriggerKind;
 
 /*! \brief Type for the data pointer used by the callback */
 typedef void *TRG_CallBackDataPtr;
