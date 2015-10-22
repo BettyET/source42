@@ -8,8 +8,7 @@
 
 #ifndef TIMER_H_
 #define TIMER_H_
-
-#define TMR_TICK_MS  1
+#include "LocalTimer.h"
   /*!< we get called every 1 ms */
 
 
