@@ -13,14 +13,17 @@
 #include "CLS1.h"
 #include "AS1.h"
 #include "Keys.h"
+#include "Trigger.h"
 
 void myEvents(EVNT_Handle event);
+void myHeartbeatTrigger(TRG_CallBackDataPtr data);
 
 void APP_run(void)
 {
 	Led_Init(all);
 	EVNT_Init();
 	CLS1_Init();
+	myHeartbeatTrigger(NULL);
 	while(1)
 	{
 		KEY_Scan();
@@ -57,4 +60,8 @@ void myEvents(EVNT_Handle event)
 		CLS1_SendStr("Button 7 pressed!\r\n", CLS1_GetStdio()->stdOut);
 		break;
 	}
+}
+void myHeartbeatTrigger(TRG_CallBackDataPtr data){
+	Led_Toggle(led1);
+	TRG_SetTrigger(TRG_HEARTBEAT, 50, myHeartbeatTrigger, NULL);
 }
