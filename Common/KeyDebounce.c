@@ -8,6 +8,7 @@
 
 #include "Platform.h"
 #include "Keys.h"
+#include "KeyDebounce.h"
 #include "Debounce.h"
 #include "Trigger.h"
 #include "Event.h"
@@ -155,7 +156,7 @@ static DBNC_FSMData KEYDBNC_FSMdata = {
   0, /* long key count */
   TRG_KEYPRESS, /* trigger to be used */
   (50/TRG_TICKS_MS), /* debounceTicks for 50 ms */
-  (500/TRG_TICKS_MS), /* longKeyTicks for 500 ms */
+  (1000/TRG_TICKS_MS), /* longKeyTicks for 500 ms */
 };
 
 void KEYDBNC_Process(void) {

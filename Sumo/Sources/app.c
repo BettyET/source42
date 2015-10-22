@@ -11,7 +11,7 @@
 #include "Event.h"
 #include "SW1.h"
 #include "CLS1.h"
-#include "Keys.h"
+#include "KeyDebounce.h"
 #include "Trigger.h"
 #include "Buzzer.h"
 #include <stddef.h> /* for NULL */
@@ -29,7 +29,7 @@ void APP_run(void)
 
 	while(1)
 	{
-		KEY_Scan();
+		KEYDBNC_Process();
 		EVNT_HandleEvent(myEvents);
 	}
 }
