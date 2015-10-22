@@ -11,7 +11,6 @@
 
 /*! \brief Triggers which can be used from the application */
 typedef enum {
-  /*! \todo Extend the list of triggers as needed */
   TRG_BUZ_BEEP,    /*!< Buzzer beep */
   TRG_KEYPRESS,    /*!< key debounce */
   TRG_HEARTBEAT,   /*!< Heartbeat */
