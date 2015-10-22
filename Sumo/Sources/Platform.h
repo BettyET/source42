@@ -8,6 +8,7 @@
 #ifndef SOURCES_PLATFORM_H_
 #define SOURCES_PLATFORM_H_
 
+#define PL_GET_DEBUG_INFOS 1
 #define PL_CONFIG_HAS_KBI 0
 
 

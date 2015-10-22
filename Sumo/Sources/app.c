@@ -6,14 +6,15 @@
  */
 
 #include "app.h"
+#include "Platform.h"
 #include "LedDriver.h"
 #include "Wait1.h"
 #include "Event.h"
 #include "SW1.h"
-#include "CLS1.h"
 #include "KeyDebounce.h"
 #include "Trigger.h"
 #include "Buzzer.h"
+#include "Debug.h"
 #include <stddef.h> /* for NULL */
 
 
@@ -39,8 +40,7 @@ void myEvents(EVNT_Handle event)
 	switch(event)
 	{
 	case EVENT_BUTTON_1_PRESSED:
-
-		CLS1_SendStr("Huhu! Button pressed!!\r\n", CLS1_GetStdio()->stdOut);
+		sendDebugMessage("Huhu! Button pressed!!\r\n");
 		BUZ_Beep(500,1000);
 		break;
 	}
