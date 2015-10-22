@@ -24,7 +24,7 @@ static DBNC_KeySet KEYDBNC_GetKeys(void) {
   {
     keys |= (1<<0);
   }
-#if PL_CONFIG_REMOTE
+#ifdef PL_CONFIG_REMOTE
   if (KEY2_Get()) {
     keys |= (1<<1);
   }
@@ -59,7 +59,7 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
       if (keys==(1<<0)) {
         EVNT_SetEvent(EVENT_BUTTON_1_PRESSED);
       }
-#if PL_CONFIG_REMOTE
+#ifdef PL_CONFIG_REMOTE
       if (keys==(1<<1)) {
         EVNT_SetEvent(EVENT_BUTTON_2_PRESSED);
       }
@@ -86,7 +86,7 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
       if (keys==(1<<0)) {
         EVNT_SetEvent(EVENT_BUTTON_1_LPRESSED);
       }
-#if PL_CONFIG_REMOTE
+#ifdef PL_CONFIG_REMOTE
       if (keys==(1<<1)) {
         EVNT_SetEvent(EVENT_BUTTON_2_LPRESSED);
       }
@@ -113,7 +113,7 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
       if (keys==(1<<0)) {
         EVNT_SetEvent(EVENT_BUTTON_1_RELEASED);
       }
-#if PL_CONFIG_REMOTE
+#ifdef PL_CONFIG_REMOTE
       if (keys==(1<<1)) {
         EVNT_SetEvent(EVENT_BUTTON_2_RELEASED);
       }
