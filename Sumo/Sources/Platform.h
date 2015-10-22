@@ -11,6 +11,9 @@
 #define PL_GET_DEBUG_INFOS 1
 #define PL_CONFIG_HAS_KBI 0
 
+/* Timer-Einstellung */
+#define TMR_TICK_MS  1
+
 
 
 #endif /* SOURCES_PLATFORM_H_ */

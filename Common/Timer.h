@@ -8,7 +8,7 @@
 
 #ifndef TIMER_H_
 #define TIMER_H_
-#include "LocalTimer.h"
+#include "Platform.h"
   /*!< we get called every 1 ms */
 
 
