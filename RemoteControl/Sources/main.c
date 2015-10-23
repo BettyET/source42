@@ -42,9 +42,6 @@
 #include "WAIT1.h"
 #include "CS1.h"
 #include "HF1.h"
-#include "TI1.h"
-#include "TimerIntLdd1.h"
-#include "TU1.h"
 #include "SW1.h"
 #include "BitIoLdd4.h"
 #include "SW2.h"
@@ -85,7 +82,7 @@ int main(void)
   /*** End of Processor Expert internal initialization.                    ***/
 
   /* Write your code here */
-  APP_run();
+  APP_Init();
   /*** Don't write any code pass this line, or it will be deleted during code generation. ***/
   /*** RTOS startup code. Macro PEX_RTOS_START is defined by the RTOS component. DON'T MODIFY THIS CODE!!! ***/
   #ifdef PEX_RTOS_START
