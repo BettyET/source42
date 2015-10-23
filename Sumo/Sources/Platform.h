@@ -11,6 +11,9 @@
 #define PL_GET_DEBUG_INFOS 1
 #define PL_CONFIG_HAS_KBI 0
 
+/* RTOS */
+#define PL_CONFIG_HAS_RTOS 1
+
 /* Timer-Einstellung */
 #define TMR_TICK_MS  1
 
