@@ -46,6 +46,7 @@
 #include "BitIoLdd3.h"
 #include "BUZ1.h"
 #include "BitIoLdd4.h"
+#include "FRTOS1.h"
 #include "UTIL1.h"
 #include "BT1.h"
 #include "Serial1.h"
