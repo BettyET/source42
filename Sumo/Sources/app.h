@@ -8,6 +8,9 @@
 #ifndef SOURCES_APP_H_
 #define SOURCES_APP_H_
 
+
+void heartBeat(TRG_CallBackDataPtr data);
+void myEvents(EVNT_Handle event);
 void APP_run(void);
 
 
