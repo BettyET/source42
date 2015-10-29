@@ -8,7 +8,7 @@
 #ifndef SOURCES_LOCALRTOS_H_
 #define SOURCES_LOCALRTOS_H_
 
-void MainTask(void);
+void MainTask(void *pvParameters);
 
 
 

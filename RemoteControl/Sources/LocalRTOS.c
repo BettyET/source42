@@ -22,8 +22,9 @@
 void myEvents(EVNT_Handle event);
 void myHeartbeatTrigger(TRG_CallBackDataPtr data);
 
-void MainTask(void)
+void MainTask(void *pvParameters)
 {
+	(void)pvParameters;
 	while(1)
 	{
 		KEYDBNC_Process();
