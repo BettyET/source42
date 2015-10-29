@@ -10,6 +10,6 @@
 
 
 
-void MainTask(void);
+void MainTask(void *pvParameters);
 
 #endif /* SOURCES_LOCALRTOS_H_ */

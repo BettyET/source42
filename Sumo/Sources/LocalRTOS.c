@@ -20,7 +20,7 @@
 void heartBeat(TRG_CallBackDataPtr data);
 void myEvents(EVNT_Handle event);
 
-void MainTask(void){
+void MainTask(void *pvParameters){
 
 	while(1)
 	{

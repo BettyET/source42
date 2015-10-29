@@ -3,7 +3,7 @@
   <Header>
     <Name>Sumo</Name>
     <SavedBy>User</SavedBy>
-    <ModificationStamp>36</ModificationStamp>
+    <ModificationStamp>37</ModificationStamp>
     <Date>2015-09-18</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.1.RT7_b1531-0480</PEversion>
@@ -13595,8 +13595,6 @@
               <List lines_count="0" />
               <UnitText>ms</UnitText>
               <MinCounterTicks>0</MinCounterTicks>
-              <ControlledTimingCfgFromPropertySymbol>Tmg_Period</ControlledTimingCfgFromPropertySymbol>
-              <ControlledTimingCfgFromComponentRef>LinkedTimerUnit</ControlledTimingCfgFromComponentRef>
             </ItemState>
             <ItemState>
               <ItemSymbol>_InitGrp</ItemSymbol>
@@ -21761,7 +21759,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>0</Value>
+        <Value>5</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
