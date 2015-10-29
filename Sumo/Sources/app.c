@@ -16,41 +16,60 @@
 #include "Buzzer.h"
 #include "Debug.h"
 #include <stddef.h> /* for NULL */
+#include "RTOS.h"
 
 
 void heartBeat(TRG_CallBackDataPtr data);
 void myEvents(EVNT_Handle event);
-void APP_run(void)
-{
+
+void App_init(void){
+
 	Led_Init(led1);
 	TRG_Init();
 	EVNT_Init();
 	heartBeat(NULL);
 	BUZ_Init();
-
-	while(1)
-	{
-		KEYDBNC_Process();
-		EVNT_HandleEvent(myEvents);
-	}
+	RTOS_Run();
 }
 
-void myEvents(EVNT_Handle event)
-{
-	switch(event)
-	{
-	case EVENT_BUTTON_1_PRESSED:
-		sendDebugMessage("Huhu! Button pressed!!\r\n");
-		BUZ_Beep(500,1000);
-		break;
-	}
+/**
+ *  Benutzen wenn kein RTOS aktiv
+ */
+//void APP_run(void)
+//{
+//	Led_Init(led1);
+//	TRG_Init();
+//	EVNT_Init();
+//	heartBeat(NULL);
+//	BUZ_Init();
+//	RTOS_Run();
+//
+//	while(1)
+//	{
+//		KEYDBNC_Process();
+//		EVNT_HandleEvent(myEvents);
+//	}
+//}
 
-}
 
-void heartBeat(TRG_CallBackDataPtr data)
-{
-	TRG_SetTrigger(TRG_HEARTBEAT, 500, &heartBeat, NULL);
-	Led_Toggle(led1);
-}
+/* neu in LocalRTOS */
+//void myEvents(EVNT_Handle event)
+//{
+//	switch(event)
+//	{
+//	case EVENT_BUTTON_1_PRESSED:
+//		sendDebugMessage("Huhu! Button pressed!!\r\n");
+//		BUZ_Beep(500,1000);
+//		break;
+//	}
+//
+//}
+//
+/* neu in LocalRTOS */
+//void heartBeat(TRG_CallBackDataPtr data)
+//{
+//	TRG_SetTrigger(TRG_HEARTBEAT, 500, &heartBeat, NULL);
+//	Led_Toggle(led1);
+//}
 
 
