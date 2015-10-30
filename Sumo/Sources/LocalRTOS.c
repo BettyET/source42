@@ -38,7 +38,7 @@ void myEvents(EVNT_Handle event)
 	{
 	case EVENT_BUTTON_1_PRESSED:
 		sendDebugMessage("Huhu! Button pressed!!\r\n");
-		BUZ_Beep(500,100);
+		BUZ_Beep(500,1000);
 		break;
 	}
 

@@ -3,10 +3,10 @@
   <Header>
     <Name>Sumo</Name>
     <SavedBy>User</SavedBy>
-    <ModificationStamp>37</ModificationStamp>
+    <ModificationStamp>40</ModificationStamp>
     <Date>2015-09-18</Date>
     <IDE>Eclipse IDE</IDE>
-    <PEversion>1.12.1.RT7_b1531-0480</PEversion>
+    <PEversion>1.12.0.RT7_b1515-0427</PEversion>
   </Header>
   <Options>
     <ProjectMainModule>main</ProjectMainModule>
@@ -21709,7 +21709,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>100</Value>
+        <Value>1000</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
