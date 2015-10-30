@@ -16,6 +16,7 @@
 #include "Trigger.h"
 #include "KeyDebounce.h"
 #include "RTOS.h"
+#include "PDC1.h"
 
 void myEvents(EVNT_Handle event);
 void myHeartbeatTrigger(TRG_CallBackDataPtr data);
@@ -26,6 +27,7 @@ void APP_Init(void)
 	EVNT_Init();
 	CLS1_Init();
 	myHeartbeatTrigger(NULL);
+	PDC1_WriteLineStr(1, "Hallo");
 	RTOS_Run();
 }
 

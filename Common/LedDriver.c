@@ -9,7 +9,7 @@
 #include "LED1.h"
 #include "LED2.h"
 #ifdef PL_CONFIG_REMOTE
-#include "LED3.h"
+//#include "LED3.h"
 #endif
 
 void Led_Init(const Leds l)
@@ -24,14 +24,14 @@ void Led_Init(const Leds l)
 		break;
 #ifdef PL_CONFIG_REMOTE
 	case led3:
-		LED3_Init();
+		//LED3_Init();
 		break;
 #endif
 	case all:
 		LED1_Init();
 		LED2_Init();
 #ifdef 	PL_CONFIG_REMOTE
-		LED3_Init();
+		//LED3_Init();
 #endif
 		break;
 	}

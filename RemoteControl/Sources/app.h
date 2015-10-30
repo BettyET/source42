@@ -10,6 +10,7 @@
 
 
 void APP_run(void);
+void APP_Init(void);
 
 
 #endif /* SOURCES_APP_H_ */
