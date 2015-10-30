@@ -15,6 +15,8 @@
 #define HARTBEAT_EVENT 0
 #define HARTBEAT_TRIGGER 1
 
+#define PL_CONFIG_HAS_SNAKE 1
+
 #define TMR_TICK_MS  1
 
 /* RTOS included? */
