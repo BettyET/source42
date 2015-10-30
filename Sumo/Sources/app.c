@@ -26,7 +26,7 @@ void myEvents(EVNT_Handle event);
 
 void App_init(void){
 
-	Led_Init(led1);
+	Led_Init(all);
 	TRG_Init();
 	EVNT_Init();
 	heartBeat(NULL);

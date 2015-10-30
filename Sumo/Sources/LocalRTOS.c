@@ -48,6 +48,7 @@ void heartBeat(TRG_CallBackDataPtr data)
 {
 	TRG_SetTrigger(TRG_HEARTBEAT, 500, &heartBeat, NULL);
 	Led_Toggle(led1);
+	Led_Toggle(led2);
 }
 
 
