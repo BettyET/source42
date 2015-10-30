@@ -17,6 +17,7 @@
 #include "Debug.h"
 #include <stddef.h> /* for NULL */
 #include "RTOS.h"
+#include "Shell.h"
 
 
 void heartBeat(TRG_CallBackDataPtr data);
@@ -29,6 +30,9 @@ void App_init(void){
 	EVNT_Init();
 	heartBeat(NULL);
 	BUZ_Init();
+	SHELL_Init();
+
+	/* RTOS darf erst am schluss angelassen werden */
 	RTOS_Run();
 }
 
