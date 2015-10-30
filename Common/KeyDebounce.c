@@ -58,16 +58,28 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
     case DBNC_EVENT_PRESSED:
       if (keys==(1<<0)) {
         EVNT_SetEvent(EVENT_BUTTON_1_PRESSED);
+#if PL_CONFIG_HAS_SNAKE
+        EVNT_SetEvent(EVNT_SNAKE_UP);
+#endif
       }
 #ifdef PL_CONFIG_REMOTE
       if (keys==(1<<1)) {
         EVNT_SetEvent(EVENT_BUTTON_2_PRESSED);
+#if PL_CONFIG_HAS_SNAKE
+        EVNT_SetEvent(EVNT_SNAKE_RIGHT);
+#endif
       }
       if (keys==(1<<2)) {
         EVNT_SetEvent(EVENT_BUTTON_3_PRESSED);
+#if PL_CONFIG_HAS_SNAKE
+        EVNT_SetEvent(EVNT_SNAKE_DOWN);
+#endif
       }
       if (keys==(1<<3)) {
         EVNT_SetEvent(EVENT_BUTTON_4_PRESSED);
+#if PL_CONFIG_HAS_SNAKE
+        EVNT_SetEvent(EVNT_SNAKE_LEFT);
+#endif
       }
       if (keys==(1<<4)) {
         EVNT_SetEvent(EVENT_BUTTON_5_PRESSED);
@@ -77,6 +89,9 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
       }
       if (keys==(1<<6)) {
         EVNT_SetEvent(EVENT_BUTTON_7_PRESSED);
+#if PL_CONFIG_HAS_SNAKE
+        EVNT_SetEvent(EVNT_SNAKE_START_PAUSE);
+#endif
       }
 #endif
       break;
