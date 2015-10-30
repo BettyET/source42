@@ -28,7 +28,10 @@ void APP_Init(void)
 	EVNT_Init();
 	CLS1_Init();
 	myHeartbeatTrigger(NULL);
-	SNAKE_Init();
+	SNAKE_Init(); // Kreiert Snake- Task
+	SHELL_Init(); // Kreiert Shell- Task
 	RTOS_Run();
 }
+
+
 
