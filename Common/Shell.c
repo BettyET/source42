@@ -10,6 +10,7 @@
 #include "Shell.h"
 #include "CLS1.h"
 #include "FRTOS1.h"
+#include "app.h"
 #if PL_CONFIG_HAS_USB_CDC
   #include "USB1.h"
 #endif
@@ -24,6 +25,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 {
   CLS1_ParseCommand, /* Processor Expert Shell component, is first in list */
   SHELL_ParseCommand, /* our own module parser */
+  APP_ParseCommand, /*App specific commands */
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
 #endif
@@ -147,6 +149,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if CLS1_DEFAULT_SERIAL
   (void)CLS1_ParseWithCommandTable((unsigned char*)CLS1_CMD_HELP, ioLocal, CmdParserTable);
 #endif
+
   for(;;) {
 #if CLS1_DEFAULT_SERIAL
     (void)CLS1_ReadAndParseWithCommandTable(localConsole_buf, sizeof(localConsole_buf), ioLocal, CmdParserTable);
@@ -157,7 +160,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_CONFIG_HAS_BLUETOOTH
     (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
 #endif
-    FRTOS1_vTaskDelay(10/portTICK_RATE_MS);
+    FRTOS1_vTaskDelay(40/portTICK_RATE_MS);// Muss so kurz sein, da die USB-Geschichte damit getriggert wird
   } /* for */
 }
 

@@ -18,7 +18,8 @@
 #include <stddef.h> /* for NULL */
 #include "RTOS.h"
 #include "Shell.h"
-
+#include "CLS1.h"
+#include "UTIL1.h"
 
 void heartBeat(TRG_CallBackDataPtr data);
 void myEvents(EVNT_Handle event);
@@ -34,6 +35,56 @@ void App_init(void){
 
 	/* RTOS darf erst am schluss angelassen werden */
 	RTOS_Run();
+}
+/* App-Spezifische Konsole */
+
+
+uint8_t APP_PrintHelp(CLS1_ConstStdIOType *io)
+{
+    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+    CLS1_SendStr((unsigned char*)"--------------------------------------------------------------", io->stdOut);
+    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+    CLS1_SendStr((unsigned char*)"Application s42", io->stdOut);
+    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+    CLS1_SendStr((unsigned char*)"--------------------------------------------------------------", io->stdOut);
+    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+    CLS1_SendHelpStr((unsigned char*)"APP", (const unsigned char*)"Group of APP commands\r\n", io->stdOut);
+    CLS1_SendHelpStr((unsigned char*)"  help|status", (const unsigned char*)"Print help or status information\r\n", io->stdOut);
+    return ERR_OK;
+}
+
+uint8_t APP_PrintStatus(CLS1_ConstStdIOType *io)
+{
+    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+    CLS1_SendStr((unsigned char*)"--------------------------------------------------------------", io->stdOut);
+    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+    CLS1_SendStr((unsigned char*)"Application s42 Status", io->stdOut);
+    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+    CLS1_SendStr((unsigned char*)"--------------------------------------------------------------", io->stdOut);
+    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+    CLS1_SendStr((unsigned char*)"Alle Systeme nominal und laufen\r\n", io->stdOut);
+    return ERR_OK;
+}
+
+uint8_t APP_ParseCommand(const uint8_t *cmd, bool *handled, CLS1_ConstStdIOType *io)
+{
+  if (UTIL1_strcmp((char*)cmd, CLS1_CMD_HELP)==0 || UTIL1_strcmp((char*)cmd, "APP help")==0)
+  {
+	*handled = TRUE;
+	return APP_PrintHelp(io);
+  }
+  else if ((UTIL1_strcmp((char*)cmd, CLS1_CMD_STATUS)==0) || (UTIL1_strcmp((char*)cmd, "APP status")==0))
+  {
+    *handled = TRUE;
+    return APP_PrintStatus(io);
+  }
+  else if ((UTIL1_strcmp((char*)cmd, CLS1_CMD_STATUS)==0) || (UTIL1_strcmp((char*)cmd, "Gugus")==0))
+  {
+	  CLS1_SendStr((unsigned char*)"HiHi \r\n", io->stdOut);
+    *handled = TRUE;
+    return ERR_OK;
+  }
+  return ERR_OK; /* no error */
 }
 
 /**
