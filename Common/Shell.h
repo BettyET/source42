@@ -9,6 +9,7 @@
 #ifndef SHELL_H_
 #define SHELL_H_
 
+
 /*!
  * \brief Sends a string to the shell/console stdout
  * \param msg Zero terminated string to write

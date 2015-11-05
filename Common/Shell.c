@@ -42,15 +42,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 
 static uint32_t SHELL_val; /* used as demo value for shell */
 
-void SHELL_SendString(unsigned char *msg) {
-
-#if PL_CONFIG_HAS_SHELL_QUEUE
-	// use queue
+void SHELL_SendString(unsigned char *msg)
+{
 	SQUEUE_SendString(msg);
-
-#else
-  CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
-#endif
 }
 
 /*!
@@ -170,6 +164,13 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 #if PL_CONFIG_HAS_BLUETOOTH
     (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
 #endif
+
+    unsigned char ch;
+	while((ch=SQUEUE_ReceiveChar()) && ch!='\0')
+	{
+		ioLocal->stdOut(ch);
+	}
+
     FRTOS1_vTaskDelay(40/portTICK_RATE_MS);// Muss so kurz sein, da die USB-Geschichte damit getriggert wird
   } /* for */
 }

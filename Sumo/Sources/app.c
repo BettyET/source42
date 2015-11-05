@@ -21,6 +21,7 @@
 #include "CLS1.h"
 #include "UTIL1.h"
 #include "USB1.h"
+#include "ShellQueue.h"
 
 void heartBeat(TRG_CallBackDataPtr data);
 void myEvents(EVNT_Handle event);
@@ -32,6 +33,7 @@ void App_init(void){
 	EVNT_Init();
 	heartBeat(NULL);
 	BUZ_Init();
+	SQUEUE_Init();
 	SHELL_Init();
 	/* RTOS darf erst am schluss angelassen werden */
 	RTOS_Run();
@@ -41,28 +43,28 @@ void App_init(void){
 
 uint8_t APP_PrintHelp(CLS1_ConstStdIOType *io)
 {
-    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
-    CLS1_SendStr((unsigned char*)"--------------------------------------------------------------", io->stdOut);
-    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
-    CLS1_SendStr((unsigned char*)"Application s42", io->stdOut);
-    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
-    CLS1_SendStr((unsigned char*)"--------------------------------------------------------------", io->stdOut);
-    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
-    CLS1_SendHelpStr((unsigned char*)"APP", (const unsigned char*)"Group of APP commands\r\n", io->stdOut);
-    CLS1_SendHelpStr((unsigned char*)"  help|status", (const unsigned char*)"Print help or status information\r\n", io->stdOut);
+	SHELL_SendString("\r\n");
+//	SHELL_SendString("--------------------------------------------------------------");
+//	SHELL_SendString("\r\n");
+//	SHELL_SendString("Application s42");
+//	SHELL_SendString("\r\n");
+//	SHELL_SendString("--------------------------------------------------------------");
+//	SHELL_SendString("\r\n");
+//	SHELL_SendString("APP; Group of APP commands\r\n");
+	SHELL_SendString("  help|status; Print help or status information\r\n");
     return ERR_OK;
 }
 
 uint8_t APP_PrintStatus(CLS1_ConstStdIOType *io)
 {
-    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
-    CLS1_SendStr((unsigned char*)"--------------------------------------------------------------", io->stdOut);
-    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
-    CLS1_SendStr((unsigned char*)"Application s42 Status", io->stdOut);
-    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
-    CLS1_SendStr((unsigned char*)"--------------------------------------------------------------", io->stdOut);
-    CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
-    CLS1_SendStr((unsigned char*)"Alle Systeme nominal und laufen\r\n", io->stdOut);
+	SHELL_SendString((unsigned char*)"\r\n");
+	SHELL_SendString((unsigned char*)"--------------------------------------------------------------");
+	SHELL_SendString((unsigned char*)"\r\n");
+	SHELL_SendString((unsigned char*)"Application s42 Status");
+	SHELL_SendString((unsigned char*)"\r\n");
+	SHELL_SendString((unsigned char*)"--------------------------------------------------------------");
+	SHELL_SendString((unsigned char*)"\r\n");
+    SHELL_SendString((unsigned char*)"Alle Systeme nominal und laufen\r\n");
     return ERR_OK;
 }
 
@@ -80,7 +82,7 @@ uint8_t APP_ParseCommand(const uint8_t *cmd, bool *handled, CLS1_ConstStdIOType 
   }
   else if ((UTIL1_strcmp((char*)cmd, CLS1_CMD_STATUS)==0) || (UTIL1_strcmp((char*)cmd, "Gugus")==0))
   {
-	  CLS1_SendStr((unsigned char*)"HiHi \r\n", io->stdOut);
+	  SHELL_SendString((unsigned char*)"HiHi \r\n");
     *handled = TRUE;
     return ERR_OK;
   }

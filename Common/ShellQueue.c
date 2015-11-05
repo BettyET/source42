@@ -13,15 +13,21 @@
 
 static xQueueHandle SQUEUE_Queue;
 
-#define SQUEUE_LENGTH      32 /* items in queue, that's my buffer size */
+#define SQUEUE_LENGTH      64 /* items in queue, that's my buffer size */
 #define SQUEUE_ITEM_SIZE   1  /* each item is a single character */
 
 void SQUEUE_SendString(const unsigned char *str) {
-  /*! \todo Implement function */
+	xQueueSendToBack(SQUEUE_Queue,str,0);
 }
 
 unsigned char SQUEUE_ReceiveChar(void) {
   /*! \todo Implement function */
+	char c;
+	xQueueReceive(SQUEUE_Queue,&c,0);
+	if ( c != errQUEUE_EMPTY)
+		return c;
+	else
+		return '\0';
 }
 
 unsigned short SQUEUE_NofElements(void) {
