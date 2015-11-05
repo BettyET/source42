@@ -60,6 +60,6 @@ static uint8_t APP_PrintHelp(const CLS1_StdIOType *io) {
 	return ERR_OK;
 }
 static uint8_t APP_PrintStatus(const CLS1_StdIOType *io) {
-	CLS1_SendStatusStr("App", "Alles im Butter\r\n", io->stdOut);
+	CLS1_SendStatusStr("App", "42\r\n", io->stdOut);
 	return ERR_OK;
 }
