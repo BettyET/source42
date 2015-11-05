@@ -15,6 +15,9 @@
 #define PL_CONFIG_HAS_RTOS 1
 #define PL_CONFIG_HAS_BLUETOOTH 1
 
+/* Shell Queue availability */
+#define PL_CONFIG_HAS_SHELL_QUEUE 1
+
 /* Timer-Einstellung */
 #define TMR_TICK_MS  1
 
