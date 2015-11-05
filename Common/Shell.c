@@ -17,6 +17,9 @@
 #if PL_CONFIG_HAS_BLUETOOTH
   #include "BT1.h"
 #endif
+#if PL_CONFIG_HAS_SHELL_QUEUE
+	#include "ShellQueue.h"
+#endif
 
 /* forward declaration */
 static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
@@ -40,7 +43,14 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 static uint32_t SHELL_val; /* used as demo value for shell */
 
 void SHELL_SendString(unsigned char *msg) {
+
+#if PL_CONFIG_HAS_SHELL_QUEUE
+	// use queue
+	SQUEUE_SendString(msg);
+
+#else
   CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
+#endif
 }
 
 /*!
