@@ -27,7 +27,7 @@ unsigned short SQUEUE_NofElements(void);
  * \brief Receives an a message character from the queue, and returns immediately if the queue is empty.
  * \return Message character, or '\0' if there was no message.
  */
-unsigned char SQUEUE_ReceiveChar(void);
+const unsigned char *SQUEUE_ReceiveMessage(void);
 
 /*! \brief Initializes the queue module */
 void SQUEUE_Init(void);

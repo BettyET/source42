@@ -165,11 +165,13 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
     (void)CLS1_ReadAndParseWithCommandTable(bluetooth_buf, sizeof(bluetooth_buf), &BT_stdio, CmdParserTable);
 #endif
 
-    unsigned char ch;
-	while((ch=SQUEUE_ReceiveChar()) && ch!='\0')
-	{
-		ioLocal->stdOut(ch);
-	}
+    const unsigned char *msg;
+
+    msg = SQUEUE_ReceiveMessage();
+    if (msg!=NULL) {
+      CLS1_SendStr(msg, CLS1_GetStdio()->stdOut);
+      FRTOS1_vPortFree((void*)msg);
+    }
 
     FRTOS1_vTaskDelay(40/portTICK_RATE_MS);// Muss so kurz sein, da die USB-Geschichte damit getriggert wird
   } /* for */

@@ -13,21 +13,32 @@
 
 static xQueueHandle SQUEUE_Queue;
 
-#define SQUEUE_LENGTH      64 /* items in queue, that's my buffer size */
-#define SQUEUE_ITEM_SIZE   1  /* each item is a single character */
+#define SQUEUE_LENGTH      32 /* items in queue, that's my buffer size */
+#define SQUEUE_ITEM_SIZE   sizeof(char_t*)  /* each item is a single character */
 
 void SQUEUE_SendString(const unsigned char *str) {
-	xQueueSendToBack(SQUEUE_Queue,str,0);
+	//xQueueSendToBack(SQUEUE_Queue,&str,0);
+	  unsigned char *ptr;
+	  size_t bufSize;
+
+	  bufSize = UTIL1_strlen(str)+1;
+	  ptr = FRTOS1_pvPortMalloc(bufSize);
+	  UTIL1_strcpy(ptr, bufSize, str);
+	  if (FRTOS1_xQueueSendToBack(SQUEUE_Queue, &ptr, 0)!=pdPASS) {
+	    for(;;){} /* ups? */
+	  }
 }
 
-unsigned char SQUEUE_ReceiveChar(void) {
-  /*! \todo Implement function */
-	char c;
-	xQueueReceive(SQUEUE_Queue,&c,0);
-	if ( c != errQUEUE_EMPTY)
-		return c;
-	else
-		return '\0';
+const unsigned char *SQUEUE_ReceiveMessage(void) {
+  const unsigned char *ptr;
+  portBASE_TYPE res;
+
+  res = FRTOS1_xQueueReceive(SQUEUE_Queue, &ptr, 0);
+  if (res==errQUEUE_EMPTY) {
+    return NULL;
+  } else {
+    return ptr;
+  }
 }
 
 unsigned short SQUEUE_NofElements(void) {

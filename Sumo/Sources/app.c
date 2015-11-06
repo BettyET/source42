@@ -44,13 +44,13 @@ void App_init(void){
 uint8_t APP_PrintHelp(CLS1_ConstStdIOType *io)
 {
 	SHELL_SendString("\r\n");
-//	SHELL_SendString("--------------------------------------------------------------");
-//	SHELL_SendString("\r\n");
-//	SHELL_SendString("Application s42");
-//	SHELL_SendString("\r\n");
-//	SHELL_SendString("--------------------------------------------------------------");
-//	SHELL_SendString("\r\n");
-//	SHELL_SendString("APP; Group of APP commands\r\n");
+	SHELL_SendString("--------------------------------------------------------------");
+	SHELL_SendString("\r\n");
+	SHELL_SendString("Application s42");
+	SHELL_SendString("\r\n");
+	SHELL_SendString("--------------------------------------------------------------");
+	SHELL_SendString("\r\n");
+	SHELL_SendString("APP; Group of APP commands\r\n");
 	SHELL_SendString("  help|status; Print help or status information\r\n");
     return ERR_OK;
 }
