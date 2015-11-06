@@ -16,6 +16,7 @@
 #include "Debug.h"
 #include <stddef.h> /* for NULL */
 #include "FRTOS1.h"
+#include "Reflectance.h"
 
 void heartBeat(TRG_CallBackDataPtr data);
 void myEvents(EVNT_Handle event);
@@ -36,9 +37,8 @@ void myEvents(EVNT_Handle event)
 {
 	switch(event)
 	{
-	case EVENT_BUTTON_1_PRESSED:
-		sendDebugMessage("Huhu! Button pressed!!\r\n");
-		BUZ_Beep(500,1000);
+	case EVNT_REF_START_STOP_CALIBRATION:
+		REF_CalibrateStartStop();
 		break;
 	}
 

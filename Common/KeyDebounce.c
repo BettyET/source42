@@ -57,7 +57,7 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
     /* pressed */
     case DBNC_EVENT_PRESSED:
       if (keys==(1<<0)) {
-        EVNT_SetEvent(EVENT_BUTTON_1_PRESSED);
+        EVNT_SetEvent(EVNT_REF_START_STOP_CALIBRATION);
 #if PL_CONFIG_HAS_SNAKE
         EVNT_SetEvent(EVNT_SNAKE_UP);
 #endif

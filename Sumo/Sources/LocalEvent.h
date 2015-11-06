@@ -14,6 +14,7 @@ typedef enum EVNT_Handle {
   EVENT_BUTTON_1_PRESSED,
   EVENT_BUTTON_1_LPRESSED,
   EVENT_BUTTON_1_RELEASED,
+  EVNT_REF_START_STOP_CALIBRATION,
   EVNT_NOF_EVENTS       /*!< Must be last one! */
 } EVNT_Handle;
 

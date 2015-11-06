@@ -17,6 +17,7 @@
 
 /* Shell Queue availability */
 #define PL_CONFIG_HAS_SHELL_QUEUE 1
+#define PL_CONFIG_HAS_SHELL 1
 
 /* Timer-Einstellung */
 #define TMR_TICK_MS  1

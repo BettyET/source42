@@ -35,6 +35,7 @@ void App_init(void){
 	BUZ_Init();
 	SQUEUE_Init();
 	SHELL_Init();
+	REF_Init();
 	/* RTOS darf erst am schluss angelassen werden */
 	RTOS_Run();
 }

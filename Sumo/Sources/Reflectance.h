@@ -10,7 +10,6 @@
 #define REFLECTANCE_H_
 
 #include "Platform.h"
-#if PL_CONFIG_HAS_REFLECTANCE
 
 #if PL_CONFIG_HAS_SHELL
   #include "CLS1.h"
@@ -57,4 +56,3 @@ void REF_Init(void);
 
 #endif /* PL_CONFIG_HAS_REFLECTANCE */
 
-#endif /* REFLECTANCE_H_ */
