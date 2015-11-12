@@ -22,6 +22,8 @@
 #include "UTIL1.h"
 #include "USB1.h"
 #include "ShellQueue.h"
+#include "Motor.h"
+#include "Reflectance.h"
 
 void heartBeat(TRG_CallBackDataPtr data);
 void myEvents(EVNT_Handle event);
@@ -35,7 +37,9 @@ void App_init(void){
 	BUZ_Init();
 	SQUEUE_Init();
 	SHELL_Init();
+	MOT_Init();
 	REF_Init();
+
 	/* RTOS darf erst am schluss angelassen werden */
 	RTOS_Run();
 }

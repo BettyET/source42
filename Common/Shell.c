@@ -12,6 +12,7 @@
 #include "FRTOS1.h"
 #include "app.h"
 #include "Reflectance.h"
+#include "Motor.h"
 #if PL_CONFIG_HAS_USB_CDC
   #include "USB1.h"
 #endif
@@ -30,7 +31,8 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   CLS1_ParseCommand, /* Processor Expert Shell component, is first in list */
   SHELL_ParseCommand, /* our own module parser */
   APP_ParseCommand, /*App specific commands */
-  REF_ParseCommand, /*Reflector specific comands*/
+  REF_ParseCommand, /*Reflector specific commands*/
+  MOT_ParseCommand,	/*Motor specific commands*/
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
 #endif
