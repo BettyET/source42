@@ -39,7 +39,7 @@ static void DirLPutVal(bool val) {
 }
 
 static void DirRPutVal(bool val) {
-  DIRR_PutVal(val);
+  DIRR_PutVal(!val);
 }
 
 void MOT_SetVal(MOT_MotorDevice *motor, uint16_t val) {

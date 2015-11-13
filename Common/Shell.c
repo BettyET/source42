@@ -11,9 +11,11 @@
 #include "CLS1.h"
 #include "FRTOS1.h"
 #include "app.h"
+#include "QuadCalib.h"
+#include "MCP4728.h"
 
 #ifdef PL_CONFIG_SUMO
-#include "Reflectance.h
+#include "Reflectance.h"
 #include "Motor.h"
 #endif
 
@@ -37,6 +39,8 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   APP_ParseCommand, /*App specific commands */
   REF_ParseCommand, /*Reflector specific commands*/
   MOT_ParseCommand,	/*Motor specific commands*/
+  MCP4728_ParseCommand, /*MCP4728 specific commands*/
+  QUADCALIB_ParseCommand, /*Calibration specific commands*/
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
 #endif
