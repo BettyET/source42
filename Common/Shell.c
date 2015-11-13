@@ -11,8 +11,12 @@
 #include "CLS1.h"
 #include "FRTOS1.h"
 #include "app.h"
-#include "Reflectance.h"
+
+#ifdef PL_CONFIG_SUMO
+#include "Reflectance.h
 #include "Motor.h"
+#endif
+
 #if PL_CONFIG_HAS_USB_CDC
   #include "USB1.h"
 #endif

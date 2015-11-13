@@ -10,7 +10,7 @@
 /*##                                   */
 /*##     Compiler  : GNU C Compiler    */
 /*##                                   */
-/*##     Date/Time : 2015-09-18, 16:10, # CodeGen: 0 */
+/*##     Date/Time : 2015-11-12, 16:27, # CodeGen: 5 */
 /*##                                   */
 /*##     Abstract  :                   */
 /*##                                   */
@@ -38,8 +38,9 @@ __stack_size = 0x0400;                 /* required amount of stack */
 
 MEMORY {
   m_interrupts (RX) : ORIGIN = 0x00000000, LENGTH = 0x000000C0
-  m_text      (RX) : ORIGIN = 0x00000410, LENGTH = 0x0001FBF0
+  m_text      (RX) : ORIGIN = 0x00000410, LENGTH = 0x0001F7F0
   m_data      (RW) : ORIGIN = 0x1FFFF000, LENGTH = 0x00004000
+  NVM_Confic  (RW) : ORIGIN = 0x0001FC00, LENGTH = 0x00000190
   m_cfmprotrom  (RX) : ORIGIN = 0x00000400, LENGTH = 0x00000010
 }
 
@@ -168,6 +169,18 @@ SECTIONS
   } > m_data
 
   ___data_size = _edata - _sdata;
+  ___NVM_Confic_ROMStart = ___ROM_AT + SIZEOF(.data);
+  .NVM_Confic : AT(___NVM_Confic_ROMStart)
+  {
+     . = ALIGN(4);
+     ___NVM_Confic_RAMStart = .;
+     *(.NVM_Confic) /* This is an User defined section */
+     ___NVM_Confic_RAMEnd = .;
+     . = ALIGN(4);
+  } > NVM_Confic
+  ___NVM_Confic_ROMSize = ___NVM_Confic_RAMEnd - ___NVM_Confic_RAMStart;
+
+
 
   /* Uninitialized data section */
   . = ALIGN(4);
@@ -186,13 +199,16 @@ SECTIONS
  	  PROVIDE ( __bss_end__ = __END_BSS );
   } > m_data
 
-  _romp_at = ___ROM_AT + SIZEOF(.data);
+  _romp_at = ___ROM_AT + SIZEOF(.data) +SIZEOF(.NVM_Confic);
   .romp : AT(_romp_at)
   {
     __S_romp = _romp_at;
     LONG(___ROM_AT);
     LONG(_sdata);
     LONG(___data_size);
+    LONG(___NVM_Confic_ROMStart);
+    LONG(___NVM_Confic_RAMStart);
+    LONG(___NVM_Confic_ROMSize);
     LONG(0);
     LONG(0);
     LONG(0);

@@ -78,6 +78,8 @@
 #include "GDisp1.h"
 #include "GFONT1.h"
 #include "FDisp1.h"
+#include "IFsh1.h"
+#include "IntFlashLdd1.h"
 
 #ifdef __cplusplus
 extern "C" {
