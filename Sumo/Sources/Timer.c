@@ -8,11 +8,12 @@
 #include "Timer.h"
 #include "Event.h"
 #include "Trigger.h"
-
+#include "Tacho.h"
 
 void TMR_OnInterrupt(void)
 {
 	TRG_IncTick();
+	TACHO_Sample();
 }
 
 void TMR_Init(void) {

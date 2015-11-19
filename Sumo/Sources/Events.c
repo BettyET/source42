@@ -28,6 +28,7 @@
 
 #include "Cpu.h"
 #include "Events.h"
+#include "Tacho.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -179,7 +180,8 @@ void FRTOS1_vApplicationMallocFailedHook(void)
 */
 void QuadInt_OnInterrupt(void)
 {
-  /* Write your code here ... */
+  Q4CLeft_Sample();
+  Q4CRight_Sample();
 }
 
 /*
@@ -214,6 +216,25 @@ void GI2C1_OnRequestBus(void)
 void GI2C1_OnReleaseBus(void)
 {
   /* Write your code here ... */
+}
+
+/*
+** ===================================================================
+**     Event       :  TachoInt_OnInterrupt (module Events)
+**
+**     Component   :  TachoInt [TimerInt]
+**     Description :
+**         When a timer interrupt occurs this event is called (only
+**         when the component is enabled - <Enable> and the events are
+**         enabled - <EnableEvent>). This event is enabled only if a
+**         <interrupt service/event> is enabled.
+**     Parameters  : None
+**     Returns     : Nothing
+** ===================================================================
+*/
+void TachoInt_OnInterrupt(void)
+{
+	TACHO_Sample();
 }
 
 /* END Events */

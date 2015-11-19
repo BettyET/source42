@@ -17,6 +17,9 @@
 #ifdef PL_CONFIG_SUMO
 #include "Reflectance.h"
 #include "Motor.h"
+#include "Tacho.h"
+#include "Q4CLeft.h"
+#include "Q4CRight.h"
 #endif
 
 #if PL_CONFIG_HAS_USB_CDC
@@ -41,6 +44,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   MOT_ParseCommand,	/*Motor specific commands*/
   MCP4728_ParseCommand, /*MCP4728 specific commands*/
   QUADCALIB_ParseCommand, /*Calibration specific commands*/
+  Q4CLeft_ParseCommand, /*Left Encoder specific commands*/
+  Q4CRight_ParseCommand, /*Right Encoder specific commands*/
+  TACHO_ParseCommand, /*Tacho specific commands*/
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
 #endif
