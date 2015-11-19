@@ -140,9 +140,12 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
     SensorFctArray[i].SetInput(); /* turn I/O line as input */
   }
   /* Achtung ab hier Critical Section */
-  //FRTOS1_taskENTER_CRITICAL();
+  FRTOS1_taskENTER_CRITICAL();
   (void)RefCnt_ResetCounter(timerHandle); /* reset timer counter */
   do {
+	if(RefCnt_ResetCounter(timerHandle)>=18750){	/*Timeout*/
+		break;
+	}
     cnt = 0;
     timerVal = RefCnt_GetCounterValue(timerHandle);
     for(i=0;i<REF_NOF_SENSORS;i++) {
@@ -155,7 +158,7 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
       }
     }
   } while(cnt!=REF_NOF_SENSORS);
- // FRTOS1_taskEXIT_CRITICAL();
+ FRTOS1_taskEXIT_CRITICAL();
   /* Hier endet Critical Section */
   LED_IR_Off(); /* IR LED's off */
 }
