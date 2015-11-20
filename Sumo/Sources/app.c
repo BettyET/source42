@@ -24,6 +24,8 @@
 #include "ShellQueue.h"
 #include "Motor.h"
 #include "Reflectance.h"
+#include "Pid.h"
+#include "Drive.h"
 
 void heartBeat(TRG_CallBackDataPtr data);
 void myEvents(EVNT_Handle event);
@@ -36,9 +38,11 @@ void App_init(void){
 	heartBeat(NULL);
 	BUZ_Init();
 	SQUEUE_Init();
-	SHELL_Init();
+	SHELL_Init();	/* Start shell task*/
 	MOT_Init();
-	REF_Init();
+	REF_Init();		/* Start reflectance task*/
+	PID_Init();		/* Set the PID default values*/
+	DRV_Init();		/* Start drive task (10Hz pid) */
 
 	/* RTOS darf erst am schluss angelassen werden */
 	RTOS_Run();

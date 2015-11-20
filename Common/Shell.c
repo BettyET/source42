@@ -20,6 +20,8 @@
 #include "Tacho.h"
 #include "Q4CLeft.h"
 #include "Q4CRight.h"
+#include "Pid.h"
+#include "Drive.h"
 #endif
 
 #if PL_CONFIG_HAS_USB_CDC
@@ -40,6 +42,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   CLS1_ParseCommand, /* Processor Expert Shell component, is first in list */
   SHELL_ParseCommand, /* our own module parser */
   APP_ParseCommand, /*App specific commands */
+#ifdef PL_CONFIG_SUMO
   REF_ParseCommand, /*Reflector specific commands*/
   MOT_ParseCommand,	/*Motor specific commands*/
   MCP4728_ParseCommand, /*MCP4728 specific commands*/
@@ -47,6 +50,9 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   Q4CLeft_ParseCommand, /*Left Encoder specific commands*/
   Q4CRight_ParseCommand, /*Right Encoder specific commands*/
   TACHO_ParseCommand, /*Tacho specific commands*/
+  PID_ParseCommand, /*PID specific commands*/
+  DRV_ParseCommand, /*Drive specific commands*/
+#endif
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
 #endif
