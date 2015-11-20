@@ -143,7 +143,7 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
   FRTOS1_taskENTER_CRITICAL();
   (void)RefCnt_ResetCounter(timerHandle); /* reset timer counter */
   do {
-	if(RefCnt_ResetCounter(timerHandle)>=18750){	/*Timeout*/
+	if(RefCnt_GetCounterValue(timerHandle)>=18750){	/*Timeout nach 5ms*/
 		break;
 	}
     cnt = 0;
