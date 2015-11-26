@@ -116,14 +116,14 @@ void DRV_Init(void) {
   DRV_SpeedRight = 0;
   if (FRTOS1_xTaskCreate(
         DriveTask,  /* pointer to the task */
-        "Drive", /* task name for kernel awareness debugging */
-        configMINIMAL_STACK_SIZE, /* task stack size */
-        (void*)NULL, /* optional task startup argument */
-        tskIDLE_PRIORITY+1,  /* initial priority */
-        (xTaskHandle*)NULL /* optional task handle to create */
+        "Drive", 					/* task name for kernel awareness debugging */
+        configMINIMAL_STACK_SIZE, 	/* task stack size */
+        (void*)NULL, 				/* optional task startup argument */
+        tskIDLE_PRIORITY+1,  		/* initial priority */
+        (xTaskHandle*)NULL 			/* optional task handle to create */
       ) != pdPASS) {
     /*lint -e527 */
-    for(;;){} /* error! probably out of memory */
+    for(;;){} 						/* error! probably out of memory */
     /*lint +e527 */
   }
 }
