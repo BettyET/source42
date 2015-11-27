@@ -3,7 +3,7 @@
   <Header>
     <Name>Sumo</Name>
     <SavedBy>User</SavedBy>
-    <ModificationStamp>58</ModificationStamp>
+    <ModificationStamp>59</ModificationStamp>
     <Date>2015-09-18</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -24448,7 +24448,7 @@
             </ItemState>
             <ItemState>
               <ItemSymbol>DividerInputFreq</ItemSymbol>
-              <Value>120 MHz</Value>
+              <Value>unknown</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>DividerClockFraction</ItemSymbol>
@@ -24478,7 +24478,7 @@
             </ItemState>
             <ItemState>
               <ItemSymbol>ModuleClockFreq</ItemSymbol>
-              <Value>48 MHz</Value>
+              <Value>unknown</Value>
             </ItemState>
             <ItemState>
               <ItemSymbol>PullUpDownGrp</ItemSymbol>
@@ -43645,8 +43645,8 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <EnumSymbVal>16</EnumSymbVal>
+        <Index>1</Index>
+        <EnumSymbVal>32</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>MethodGroup</ItemSymbol>
@@ -45059,8 +45059,8 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>0</Index>
-        <EnumSymbVal>16</EnumSymbVal>
+        <Index>1</Index>
+        <EnumSymbVal>32</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>MethodGroup</ItemSymbol>
@@ -48497,8 +48497,6 @@
               <List lines_count="0" />
               <UnitText />
               <MinCounterTicks>0</MinCounterTicks>
-              <ControlledTimingCfgFromPropertySymbol>Tmg_Period</ControlledTimingCfgFromPropertySymbol>
-              <ControlledTimingCfgFromComponentRef>LinkedTimerUnit</ControlledTimingCfgFromComponentRef>
             </ItemState>
             <ItemState>
               <ItemSymbol>_InitGrp</ItemSymbol>
