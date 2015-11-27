@@ -23,7 +23,7 @@
   /*!< number of samples for speed calculation (>0):the more, the better, but the slower. */
 
 /*! \todo Check types for position: code below is using 16bit!!!!! */
-static volatile uint23_t TACHO_LeftPosHistory[NOF_HISTORY], TACHO_RightPosHistory[NOF_HISTORY];
+static volatile uint32_t TACHO_LeftPosHistory[NOF_HISTORY], TACHO_RightPosHistory[NOF_HISTORY];
   /*!< for better accuracy, we calculate the speed over some samples */
 static volatile uint8_t TACHO_PosHistory_Index = 0;
   /*!< position index in history */
