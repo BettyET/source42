@@ -25,6 +25,7 @@
 #include "Pid.h"
 #include "Drive.h"
 #include "Turn.h"
+#include "LineFollow.h"
 #endif
 
 #if PL_CONFIG_HAS_USB_CDC
@@ -56,6 +57,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   PID_ParseCommand, /*PID specific commands*/
   DRV_ParseCommand, /*Drive specific commands*/
   TURN_ParseCommand, /*Turn specific commands*/
+  LF_ParseCommand, 	/* Line follow specific commands*/
 #endif
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
