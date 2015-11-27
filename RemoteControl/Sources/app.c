@@ -32,7 +32,9 @@ void APP_Init(void) {
 	EVNT_Init();
 	CLS1_Init();
 	myHeartbeatTrigger(NULL);
+#if PL_CONFIG_HAS_SNAKE
 	SNAKE_Init(); // Kreiert Snake- Task
+#endif
 	SHELL_Init(); // Kreiert Shell- Task
 	RTOS_Run();
 }

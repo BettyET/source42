@@ -11,10 +11,12 @@
 #include "CLS1.h"
 #include "FRTOS1.h"
 #include "app.h"
-#include "QuadCalib.h"
-#include "MCP4728.h"
+#include "ShellQueue.h"
+
 
 #ifdef PL_CONFIG_SUMO
+#include "QuadCalib.h"
+#include "MCP4728.h"
 #include "Reflectance.h"
 #include "Motor.h"
 #include "Tacho.h"
@@ -22,6 +24,7 @@
 #include "Q4CRight.h"
 #include "Pid.h"
 #include "Drive.h"
+#include "Turn.h"
 #endif
 
 #if PL_CONFIG_HAS_USB_CDC
@@ -52,6 +55,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   TACHO_ParseCommand, /*Tacho specific commands*/
   PID_ParseCommand, /*PID specific commands*/
   DRV_ParseCommand, /*Drive specific commands*/
+  TURN_ParseCommand, /*Turn specific commands*/
 #endif
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */

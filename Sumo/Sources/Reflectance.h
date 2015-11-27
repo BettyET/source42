@@ -10,6 +10,20 @@
 #define REFLECTANCE_H_
 
 #include "Platform.h"
+#define REF_NOF_SENSORS 6
+#define REF_MIDDLE_LINE_VALUE  ((REF_NOF_SENSORS+1)*1000/2)
+#define REF_MAX_LINE_VALUE     ((REF_NOF_SENSORS-1)*1000) /* maximum value for REF_GetLine() */
+
+typedef enum {
+  REF_LINE_NONE=0,     /* no line, sensors do not see a line */
+  REF_LINE_STRAIGHT=1, /* forward line |, sensors see a line underneath */
+  REF_LINE_LEFT=2,     /* left half of sensors see line */
+  REF_LINE_RIGHT=3,    /* right half of sensors see line */
+  REF_LINE_FULL=4,     /* all sensors see a line */
+  REF_NOF_LINES        /* Sentinel */
+} REF_LineKind;
+
+REF_LineKind REF_GetLineKind(void);
 
 #if PL_CONFIG_HAS_SHELL
   #include "CLS1.h"

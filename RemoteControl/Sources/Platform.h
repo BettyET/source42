@@ -18,6 +18,8 @@
 #define PL_CONFIG_HAS_SNAKE 0
 #define PL_HAS_CONFIG_SEMAPHORE 1
 
+#define PL_CONFIG_HAS_SHELL_QUEUE 1
+
 #define TMR_TICK_MS  1
 
 /* RTOS included? */
