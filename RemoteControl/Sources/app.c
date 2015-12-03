@@ -16,11 +16,11 @@
 #include "Trigger.h"
 #include "KeyDebounce.h"
 #include "RTOS.h"
-#include "PDC1.h"
 #include "snake.h"
 #include "CLS1.h"
 #include "Shell.h"
 #include "UTIL1.h"
+#include "RNet_App.h"
 
 void myEvents(EVNT_Handle event);
 void myHeartbeatTrigger(TRG_CallBackDataPtr data);
@@ -32,6 +32,7 @@ void APP_Init(void) {
 	EVNT_Init();
 	CLS1_Init();
 	myHeartbeatTrigger(NULL);
+	RNETA_Init();
 #if PL_CONFIG_HAS_SNAKE
 	SNAKE_Init(); // Kreiert Snake- Task
 #endif
