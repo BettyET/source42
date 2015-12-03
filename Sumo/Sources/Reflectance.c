@@ -136,18 +136,18 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
     raw[i] = MAX_SENSOR_VALUE;
   }
   WAIT1_Waitus(50); /* give at least 10 us to charge the capacitor */
+  FRTOS1_taskENTER_CRITICAL();
   for(i=0;i<REF_NOF_SENSORS;i++) {
     SensorFctArray[i].SetInput(); /* turn I/O line as input */
   }
   /* Achtung ab hier Critical Section */
-  FRTOS1_taskENTER_CRITICAL();
   (void)RefCnt_ResetCounter(timerHandle); /* reset timer counter */
   do {
-//	if(RefCnt_GetCounterValue(timerHandle)>=18750){	/*Timeout nach 5ms*/
-//		break;
-//	}
     cnt = 0;
     timerVal = RefCnt_GetCounterValue(timerHandle);
+    if(timerVal>=0xBFFF){	/*Timeout nach 5ms*/
+   		break;
+    	}
     for(i=0;i<REF_NOF_SENSORS;i++) {
       if (raw[i]==MAX_SENSOR_VALUE) { /* not measured yet? */
         if (SensorFctArray[i].GetVal()==0) {
