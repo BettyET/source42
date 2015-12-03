@@ -209,6 +209,7 @@ static portTASK_FUNCTION(ShellTask, pvParameters) {
 
 void SHELL_Init(void) {
   SHELL_val = 0;
+  SQUEUE_Init();
 #if !CLS1_DEFAULT_SERIAL && PL_CONFIG_CONFIG_HAS_BLUETOOTH
   (void)CLS1_SetStdio(&BT_stdio); /* use the Bluetooth stdio as default */
 #endif
