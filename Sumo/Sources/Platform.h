@@ -26,6 +26,9 @@
 /* Timer-Einstellung */
 #define TMR_TICK_MS  1
 
+/* Line Follow*/
+#define PL_CONFIG_HAS_LINE_FOLLOW 1
+
 
 
 #endif /* SOURCES_PLATFORM_H_ */

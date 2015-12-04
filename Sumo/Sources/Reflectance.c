@@ -27,7 +27,7 @@
 
 #define REF_NOF_SENSORS       6 /* number of sensors */
 #define REF_SENSOR1_IS_LEFT   1 /* sensor number one is on the left side */
-#define REF_MIN_LINE_VAL      0x60   /* minimum value indicating a line */
+//PL_CONFIG_HAS_LINE_FOLLOW#define REF_MIN_LINE_VAL      0x60   /* minimum value indicating a line */
 #define REF_MIN_NOISE_VAL     0x40   /* values below this are not added to the weighted sum */
 #define REF_USE_WHITE_LINE    0  /* if set to 1, then the robot is using a white (on black) line, otherwise a black (on white) line */
 
@@ -136,16 +136,17 @@ static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
     raw[i] = MAX_SENSOR_VALUE;
   }
   WAIT1_Waitus(50); /* give at least 10 us to charge the capacitor */
+  /* Achtung ab hier Critical Section */
   FRTOS1_taskENTER_CRITICAL();
   for(i=0;i<REF_NOF_SENSORS;i++) {
     SensorFctArray[i].SetInput(); /* turn I/O line as input */
   }
-  /* Achtung ab hier Critical Section */
+
   (void)RefCnt_ResetCounter(timerHandle); /* reset timer counter */
   do {
     cnt = 0;
     timerVal = RefCnt_GetCounterValue(timerHandle);
-    if(timerVal>=0xBFFF){	/*Timeout nach 5ms*/
+    if(timerVal>=18750){	/*Timeout nach 5ms*/
    		break;
     	}
     for(i=0;i<REF_NOF_SENSORS;i++) {

@@ -26,6 +26,7 @@
 #include "Reflectance.h"
 #include "Pid.h"
 #include "Drive.h"
+#include "LineFollow.h"
 
 void heartBeat(TRG_CallBackDataPtr data);
 void myEvents(EVNT_Handle event);
@@ -43,6 +44,7 @@ void App_init(void){
 	REF_Init();		/* Start reflectance task*/
 	PID_Init();		/* Set the PID default values*/
 	DRV_Init();		/* Start drive task (10Hz pid) */
+	LF_Init();
 
 	/* RTOS darf erst am schluss angelassen werden */
 	RTOS_Run();

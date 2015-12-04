@@ -117,11 +117,11 @@ void PID_LineCfg(uint16_t currLine, uint16_t setLine, PID_Config *config) {
   speed = ((int32_t)config->maxSpeedPercent)*(0xffff/100); /* 100% */
   pid = Limit(pid, -speed, speed);
   if (pid<0) { /* turn right */
-    speedR = speed;
+    speedR = speed+pid;
     speedL = speed-pid;
   } else { /* turn left */
     speedR = speed+pid;
-    speedL = speed;
+    speedL = speed-pid;
   }
   /* speed is now always positive, make sure it is within 16bit PWM boundary */
   if (speedL>0xFFFF) {
