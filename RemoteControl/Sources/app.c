@@ -15,12 +15,14 @@
 #include "Keys.h"
 #include "Trigger.h"
 #include "KeyDebounce.h"
+#include "Debounce.h"
 #include "RTOS.h"
 #include "snake.h"
 #include "CLS1.h"
 #include "Shell.h"
 #include "UTIL1.h"
 #include "RNet_App.h"
+#include "remote.h"
 
 void myEvents(EVNT_Handle event);
 void myHeartbeatTrigger(TRG_CallBackDataPtr data);
@@ -31,11 +33,15 @@ void APP_Init(void) {
 	Led_Init(all);
 	EVNT_Init();
 	CLS1_Init();
+	TRG_Init();
 	myHeartbeatTrigger(NULL);
 	RNETA_Init();
+	DBNC_Init();
+	KEYDBNC_Init();
 #if PL_CONFIG_HAS_SNAKE
 	SNAKE_Init(); // Kreiert Snake- Task
 #endif
+	REMOTE_Init();
 	SHELL_Init(); // Kreiert Shell- Task
 	RTOS_Run();
 }

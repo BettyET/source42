@@ -12,6 +12,7 @@
 #include "FRTOS1.h"
 #include "app.h"
 #include "ShellQueue.h"
+#include "Remote.h"
 
 
 #ifdef PL_CONFIG_SUMO
@@ -69,6 +70,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   BT1_ParseCommand,
 #endif
 #endif
+  REMOTE_ParseCommand,
   NULL /* Sentinel */
 };
 

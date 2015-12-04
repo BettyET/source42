@@ -40,6 +40,7 @@ void myEvents(EVNT_Handle event)
 	case EVENT_LED_HEARTBEAT:
 		Led_Toggle(led1);
 		break;
+		/*
 	case EVENT_BUTTON_1_PRESSED:
 		CLS1_SendStr("Button 1 pressed!\r\n", CLS1_GetStdio()->stdOut);
 		break;
@@ -82,7 +83,7 @@ void myEvents(EVNT_Handle event)
 	case EVENT_BUTTON_7_LPRESSED:
 		CLS1_SendStr("Button 7 long pressed!\r\n", CLS1_GetStdio()->stdOut);
 		break;
-
+*/
 	}
 }
 void myHeartbeatTrigger(TRG_CallBackDataPtr data){

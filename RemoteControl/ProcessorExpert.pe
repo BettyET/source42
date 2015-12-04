@@ -3,7 +3,7 @@
   <Header>
     <Name>RemoteControl</Name>
     <SavedBy>User</SavedBy>
-    <ModificationStamp>37</ModificationStamp>
+    <ModificationStamp>43</ModificationStamp>
     <Date>2015-09-18</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -678,8 +678,8 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>false</Value>
-        <Expanded>false</Expanded>
+        <Value>true</Value>
+        <Expanded>true</Expanded>
       </ItemState>
       <ItemState>
         <ItemSymbol>PeriphDeviceRCM</ItemSymbol>
@@ -22023,7 +22023,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>8192</Value>
+        <Value>12288</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
@@ -30213,7 +30213,7 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Value>99</Value>
+        <Value>42</Value>
         <Base>DEC</Base>
       </ItemState>
       <ItemState>
