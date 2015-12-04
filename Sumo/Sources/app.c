@@ -17,6 +17,7 @@
 #include "Debug.h"
 #include <stddef.h> /* for NULL */
 #include "RTOS.h"
+#include "RNet_App.h"
 #include "Shell.h"
 #include "CLS1.h"
 #include "UTIL1.h"
@@ -37,6 +38,7 @@ void App_init(void){
 	TRG_Init();
 	EVNT_Init();
 	heartBeat(NULL);
+	RNETA_Init();
 	BUZ_Init();
 	SQUEUE_Init();
 	SHELL_Init();	/* Start shell task*/

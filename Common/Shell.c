@@ -25,6 +25,7 @@
 #include "Pid.h"
 #include "Drive.h"
 #include "Turn.h"
+#include "RNet_App.h"
 #include "LineFollow.h"
 #endif
 
@@ -58,6 +59,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   DRV_ParseCommand, /*Drive specific commands*/
   TURN_ParseCommand, /*Turn specific commands*/
   LF_ParseCommand, 	/* Line follow specific commands*/
+  RNETA_ParseCommand, /* RNet app specific commands*/
 #endif
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
