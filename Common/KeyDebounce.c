@@ -103,7 +103,7 @@ static void KEYDBNC_OnDebounceEvent(DBNC_EventKinds event, DBNC_KeySet keys) {
     /* long pressed */
     case DBNC_EVENT_LONG_PRESSED:
       if (keys==(1<<0)) {
-        EVNT_SetEvent(EVENT_BUTTON_1_LPRESSED);
+        EVNT_SetEvent(EVNT_REF_START_STOP_CALIBRATION);
       }
 #ifdef PL_CONFIG_REMOTE
       if (keys==(1<<1)) {

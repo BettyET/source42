@@ -33,5 +33,10 @@
 /* Line Follow*/
 #define PL_CONFIG_HAS_LINE_FOLLOW 1
 
+/* Flash Speicher */
+#define PL_CONFIG_HAS_CONFIG_NVM 1
+
+
+
 
 #endif /* SOURCES_PLATFORM_H_ */

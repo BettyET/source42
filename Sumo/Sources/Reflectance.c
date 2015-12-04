@@ -23,6 +23,7 @@
 #include "Event.h"
 #include "Shell.h"
 #include "Buzzer.h"
+#include "NVM_Config.h"
 
 
 #define REF_NOF_SENSORS       6 /* number of sensors */
@@ -468,6 +469,11 @@ static void REF_StateMachine(void) {
 
   switch (refState) {
     case REF_STATE_INIT:
+      if(NVMC_GetReflectanceData()!=NULL){
+    	  SensorCalibMinMax = *(SensorCalibT*)NVMC_GetReflectanceData();
+    	  refState = REF_STATE_READY;
+    	  break;
+      }
       SHELL_SendString((unsigned char*)"INFO: No calibration data present.\r\n");
       refState = REF_STATE_NOT_CALIBRATED;
       break;
@@ -504,6 +510,7 @@ static void REF_StateMachine(void) {
     
     case REF_STATE_STOP_CALIBRATION:
       SHELL_SendString((unsigned char*)"...stopping calibration.\r\n");
+      NVMC_SaveReflectanceData(&SensorCalibMinMax, NVMC_REFLECTANCE_DATA_SIZE);
       refState = REF_STATE_READY;
       break;
         
