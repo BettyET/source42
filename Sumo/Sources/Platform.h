@@ -10,6 +10,7 @@
 
 #include "PE_Types.h"
 
+
 #define PL_GET_DEBUG_INFOS 1
 #define PL_CONFIG_HAS_KBI 0
 
@@ -20,6 +21,9 @@
 /* Shell Queue availability */
 #define PL_CONFIG_HAS_SHELL_QUEUE 1
 #define PL_CONFIG_HAS_SHELL 1
+
+/* nRF module availability */
+#define PL_CONFIG_HAS_RADIO 1
 
 #define PL_CONFIG_BOARD_IS_ROBO 1
 
