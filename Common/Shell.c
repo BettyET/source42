@@ -8,7 +8,6 @@
 
 #include "Platform.h"
 #include "Shell.h"
-#include "CLS1.h"
 #include "FRTOS1.h"
 #include "app.h"
 #include "ShellQueue.h"
@@ -40,7 +39,8 @@
 #endif
 
 /* forward declaration */
-static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
+ static uint8_t SHELL_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
+
 
 static const CLS1_ParseCommandCallback CmdParserTable[] =
 {
@@ -79,6 +79,10 @@ static uint32_t SHELL_val; /* used as demo value for shell */
 void SHELL_SendString(unsigned char *msg)
 {
 	SQUEUE_SendString(msg);
+}
+
+void SHELL_ParseCmd(unsigned char *cmd) {
+  (void)CLS1_ParseWithCommandTable(cmd, CLS1_GetStdio(), CmdParserTable);
 }
 
 /*!

@@ -14,6 +14,10 @@
 #include "RNWK.h"
 #include "RPHY.h"
 
+#include "LocalEvent.h"
+
+void myEvents(EVNT_Handle event);			// event handler buttons
+
 uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *data, RNWK_ShortAddrType srcAddr, bool *handled, RPHY_PacketDesc *packet);
 
 /*!

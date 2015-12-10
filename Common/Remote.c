@@ -12,6 +12,10 @@
 #include "CLS1.h"
 #include "UTIL1.h"
 #include "RNet_App.h"
+#include "Event.h"
+#include "Keys.h"
+#include "Trigger.h"
+#include "KeyDebounce.h"
 #if PL_CONFIG_HAS_PID
   #include "PID.h"
 #endif
@@ -279,12 +283,12 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
       val = *data; /* get data value */
 #if PL_CONFIG_HAS_SHELL && PL_CONFIG_HAS_BUZZER && PL_CONFIG_HAS_REMOTE
       if (val=='F') { /* F button, disable remote */
-    	SHELL_SendString((unsigned char*)"buzzer buz 300 500");
+    	SHELL_ParseCmd((unsigned char*)"buzzer buz 300 500");
         REMOTE_SetOnOff(FALSE);
         DRV_SetSpeed(0,0); /* turn off motors */
         SHELL_SendString("Remote OFF\r\n");
       } else if (val=='G') { /* center joystick button: enable remote */
-    	SHELL_SendString((unsigned char*)"buzzer buz 300 1000");
+    	SHELL_ParseCmd((unsigned char*)"buzzer buz 300 1000");
         REMOTE_SetOnOff(TRUE);
         DRV_SetMode(DRV_MODE_SPEED);
         SHELL_SendString("Remote ON\r\n");
@@ -406,3 +410,72 @@ void REMOTE_Init(void) {
 #endif
 }
 
+#ifdef PL_CONFIG_REMOTE
+void myEvents(EVNT_Handle event)
+{
+	switch(event)
+	{
+	case EVENT_LED_HEARTBEAT:
+		Led_Toggle(led1);
+		break;
+
+	case EVENT_BUTTON_1_PRESSED:
+		CLS1_SendStr("Button 1 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_2_PRESSED:
+		CLS1_SendStr("Button 2 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_3_PRESSED:
+		CLS1_SendStr("Button 3 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_4_PRESSED:
+		CLS1_SendStr("Button 4 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_5_PRESSED:
+		CLS1_SendStr("Button 5 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_6_PRESSED:
+	{
+		//CLS1_SendStr("Button 6 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		uint8_t buf[1];
+		buf[0] = 'F';
+		(void)RAPP_SendPayloadDataBlock(buf, sizeof(buf),  RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
+		break;
+	}
+	case EVENT_BUTTON_7_PRESSED:
+	{
+		//CLS1_SendStr("Button 7 pressed!\r\n", CLS1_GetStdio()->stdOut);
+		uint8_t buf[1];
+		buf[0] = 'G';
+		(void)RAPP_SendPayloadDataBlock(buf, sizeof(buf),  RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
+		break;
+	}
+	case EVENT_BUTTON_1_LPRESSED:
+		CLS1_SendStr("Button 1 long pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_2_LPRESSED:
+		CLS1_SendStr("Button 2 long pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_3_LPRESSED:
+		CLS1_SendStr("Button 3 long pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_4_LPRESSED:
+		CLS1_SendStr("Button 4 long pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_5_LPRESSED:
+		CLS1_SendStr("Button 5 long pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+	case EVENT_BUTTON_6_LPRESSED:
+	{
+		CLS1_SendStr("Button 6 long pressed!\r\n", CLS1_GetStdio()->stdOut);
+
+		break;
+	}
+	case EVENT_BUTTON_7_LPRESSED:
+
+		CLS1_SendStr("Button 7 long pressed!\r\n", CLS1_GetStdio()->stdOut);
+		break;
+
+	}
+}
+#endif
