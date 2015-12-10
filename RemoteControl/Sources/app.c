@@ -39,10 +39,10 @@ void APP_Init(void) {
 	DBNC_Init();
 	KEYDBNC_Init();
 #if PL_CONFIG_HAS_SNAKE
-	SNAKE_Init(); // Kreiert Snake- Task
+	SNAKE_Init(); 	// Kreiert Snake- Task
 #endif
-	REMOTE_Init();
-	SHELL_Init(); // Kreiert Shell- Task
+	REMOTE_Init();	// Remote- Task
+	SHELL_Init(); 	// Kreiert Shell- Task
 	RTOS_Run();
 }
 

@@ -35,8 +35,8 @@
   #include "Shell.h"
 #endif
 
-static bool REMOTE_isOn = FALSE;
-static bool REMOTE_isVerbose = FALSE;
+static bool REMOTE_isOn = TRUE;
+static bool REMOTE_isVerbose = TRUE;
 static bool REMOTE_useJoystick = TRUE;
 #if PL_CONFIG_HAS_JOYSTICK
 static uint16_t midPointX, midPointY;
@@ -108,7 +108,7 @@ static void RemoteTask (void *pvParameters) {
         int8_t x8, y8;
 
         /* send periodically messages */
-        APP_GetXY(&x, &y, &x8, &y8);
+        APP_GetXY(&x, &y, &x8, &y8);			// Werte aus Joystick auslesen
         buf[0] = x8;
         buf[1] = y8;
         if (REMOTE_isVerbose) {

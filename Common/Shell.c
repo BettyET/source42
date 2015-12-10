@@ -13,7 +13,7 @@
 #include "app.h"
 #include "ShellQueue.h"
 #include "Remote.h"
-
+#include "RNet_App.h"
 
 #ifdef PL_CONFIG_SUMO
 #include "QuadCalib.h"
@@ -26,7 +26,6 @@
 #include "Pid.h"
 #include "Drive.h"
 #include "Turn.h"
-#include "RNet_App.h"
 #include "LineFollow.h"
 #endif
 

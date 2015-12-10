@@ -45,4 +45,6 @@
 #define PL_CONFIG_HAS_LED 1
 #define PL_CONFIG_HAS_BUZZER 1
 
+#define PL_CONFIG_HAS_USB_CDC 1
+
 #endif /* SOURCES_PLATFORM_H_ */
