@@ -24,6 +24,7 @@
 
 /* nRF module availability */
 #define PL_CONFIG_HAS_RADIO 1
+#define PL_CONFIG_HAS_REMOTE 1
 
 #define PL_CONFIG_BOARD_IS_ROBO 1
 
@@ -38,5 +39,10 @@
 
 
 
+#define PL_CONFIG_HAS_PID 1
+#define PL_CONFIG_HAS_MOTOR 1
+#define PL_CONFIG_HAS_DRIVE 1
+#define PL_CONFIG_HAS_LED 1
+#define PL_CONFIG_HAS_BUZZER 1
 
 #endif /* SOURCES_PLATFORM_H_ */

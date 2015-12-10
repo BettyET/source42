@@ -48,6 +48,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   CLS1_ParseCommand, /* Processor Expert Shell component, is first in list */
   SHELL_ParseCommand, /* our own module parser */
   APP_ParseCommand, /*App specific commands */
+  RNETA_ParseCommand, /* RNet app specific commands*/
 #ifdef PL_CONFIG_SUMO
   REF_ParseCommand, /*Reflector specific commands*/
   MOT_ParseCommand,	/*Motor specific commands*/
@@ -60,7 +61,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
   DRV_ParseCommand, /*Drive specific commands*/
   TURN_ParseCommand, /*Turn specific commands*/
   LF_ParseCommand, 	/* Line follow specific commands*/
-  RNETA_ParseCommand, /* RNet app specific commands*/
+
 #endif
 #if FRTOS1_PARSE_COMMAND_ENABLED
   FRTOS1_ParseCommand, /* FreeRTOS shell parser */
