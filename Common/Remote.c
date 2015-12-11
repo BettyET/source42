@@ -16,6 +16,9 @@
 #include "Keys.h"
 #include "Trigger.h"
 #include "KeyDebounce.h"
+#ifdef PL_CONFIG_SUMO
+	#include "Reflectance.h"
+#endif
 #if PL_CONFIG_HAS_PID
   #include "PID.h"
 #endif
@@ -39,6 +42,7 @@
   #include "Shell.h"
 #endif
 
+static bool BOOST = FALSE;
 static bool REMOTE_isOn = TRUE;
 static bool REMOTE_isVerbose = TRUE;
 static bool REMOTE_useJoystick = TRUE;
@@ -215,14 +219,24 @@ static int16_t scaleJoystickTo1K(int8_t val) {
   int tmp;
 
   if (val>0) {
-    tmp = ((val*10)/127)*100;
+	  if (BOOST){
+		  tmp = ((val*10)/127)*200;
+	  }
+	  else{
+		  tmp = ((val*10)/127)*100;
+	  }
   } else {
-    tmp = ((val*10)/128)*100;
+	  if (BOOST){
+		  tmp = ((val*10)/128)*200;
+	  }
+	  else{
+		  tmp = ((val*10)/128)*100;
+	  }
   }
-  if (tmp<-1000) {
-    tmp = -1000;
-  } else if (tmp>1000) {
-    tmp = 1000;
+  if (tmp<-2000) {
+    tmp = -2000;
+  } else if (tmp>2000) {
+    tmp = 2000;
   }
   return tmp;
 }
@@ -284,18 +298,25 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
 #if PL_CONFIG_HAS_SHELL && PL_CONFIG_HAS_BUZZER && PL_CONFIG_HAS_REMOTE
       if (val=='F') { /* F button, disable remote */
     	SHELL_ParseCmd((unsigned char*)"buzzer buz 300 500");
+    	REF_turn_on();			// Liniensensoren ausschalten
         REMOTE_SetOnOff(FALSE);
         DRV_SetSpeed(0,0); /* turn off motors */
         SHELL_SendString("Remote OFF\r\n");
       } else if (val=='G') { /* center joystick button: enable remote */
     	SHELL_ParseCmd((unsigned char*)"buzzer buz 300 1000");
+    	REF_turn_off();			// Liniensensoren einschalten
         REMOTE_SetOnOff(TRUE);
         DRV_SetMode(DRV_MODE_SPEED);
         SHELL_SendString("Remote ON\r\n");
       } else if (val=='C') { /* red 'C' button */
         /*! \todo add functionality */
       } else if (val=='A') { /* green 'A' button */
-        /*! \todo add functionality */
+        if(BOOST){
+        	BOOST = FALSE;
+        }
+        else{
+        	BOOST = TRUE;
+        }
       }
 #else
       *handled = FALSE; /* no shell and no buzzer? */
@@ -428,9 +449,14 @@ void myEvents(EVNT_Handle event)
 	case EVENT_BUTTON_3_PRESSED:
 		CLS1_SendStr("Button 3 pressed!\r\n", CLS1_GetStdio()->stdOut);
 		break;
-	case EVENT_BUTTON_4_PRESSED:
-		CLS1_SendStr("Button 4 pressed!\r\n", CLS1_GetStdio()->stdOut);
+	case EVENT_BUTTON_4_PRESSED:{
+		uint8_t buf[1];
+		buf[0] = 'A';
+		(void)RAPP_SendPayloadDataBlock(buf, sizeof(buf),  RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
 		break;
+		}
+		//CLS1_SendStr("Button 4 pressed!\r\n", CLS1_GetStdio()->stdOut);
+
 	case EVENT_BUTTON_5_PRESSED:
 		CLS1_SendStr("Button 5 pressed!\r\n", CLS1_GetStdio()->stdOut);
 		break;

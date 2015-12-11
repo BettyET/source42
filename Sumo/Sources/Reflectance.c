@@ -38,6 +38,9 @@
   static xSemaphoreHandle REF_StartStopSem = NULL;
 #endif
 
+
+static bool REF_ON = TRUE;
+
 typedef enum {
   REF_STATE_INIT,
   REF_STATE_NOT_CALIBRATED,
@@ -125,44 +128,46 @@ void REF_CalibrateStartStop(void) {
  * \return ERR_OVERFLOW if there is a timeout, ERR_OK otherwise
  */
 static void REF_MeasureRaw(SensorTimeType raw[REF_NOF_SENSORS]) {
-  uint8_t cnt; /* number of sensor */
-  uint8_t i;
-  RefCnt_TValueType timerVal;
+	if(REF_ON){
+	  uint8_t cnt; /* number of sensor */
+	  uint8_t i;
+	  RefCnt_TValueType timerVal;
 
-  LED_IR_On(); /* IR LED's on */
-  WAIT1_Waitus(200);
-  for(i=0;i<REF_NOF_SENSORS;i++) {
-    SensorFctArray[i].SetOutput(); /* turn I/O line as output */
-    SensorFctArray[i].SetVal(); /* put high */
-    raw[i] = MAX_SENSOR_VALUE;
-  }
-  WAIT1_Waitus(50); /* give at least 10 us to charge the capacitor */
-  /* Achtung ab hier Critical Section */
-  FRTOS1_taskENTER_CRITICAL();
-  for(i=0;i<REF_NOF_SENSORS;i++) {
-    SensorFctArray[i].SetInput(); /* turn I/O line as input */
-  }
+	  LED_IR_On(); /* IR LED's on */
+	  WAIT1_Waitus(200);
+	  for(i=0;i<REF_NOF_SENSORS;i++) {
+		SensorFctArray[i].SetOutput(); /* turn I/O line as output */
+		SensorFctArray[i].SetVal(); /* put high */
+		raw[i] = MAX_SENSOR_VALUE;
+	  }
+	  WAIT1_Waitus(50); /* give at least 10 us to charge the capacitor */
+	  /* Achtung ab hier Critical Section */
+	  FRTOS1_taskENTER_CRITICAL();
+	  for(i=0;i<REF_NOF_SENSORS;i++) {
+		SensorFctArray[i].SetInput(); /* turn I/O line as input */
+	  }
 
-  (void)RefCnt_ResetCounter(timerHandle); /* reset timer counter */
-  do {
-    cnt = 0;
-    timerVal = RefCnt_GetCounterValue(timerHandle);
-    if(timerVal>=18750){	/*Timeout nach 5ms*/
-   		break;
-    	}
-    for(i=0;i<REF_NOF_SENSORS;i++) {
-      if (raw[i]==MAX_SENSOR_VALUE) { /* not measured yet? */
-        if (SensorFctArray[i].GetVal()==0) {
-          raw[i] = timerVal;
-        }
-      } else { /* have value */
-        cnt++;
-      }
-    }
-  } while(cnt!=REF_NOF_SENSORS);
- FRTOS1_taskEXIT_CRITICAL();
-  /* Hier endet Critical Section */
-  LED_IR_Off(); /* IR LED's off */
+	  (void)RefCnt_ResetCounter(timerHandle); /* reset timer counter */
+	  do {
+		cnt = 0;
+		timerVal = RefCnt_GetCounterValue(timerHandle);
+		if(timerVal>=18750){	/*Timeout nach 5ms*/
+			break;
+			}
+		for(i=0;i<REF_NOF_SENSORS;i++) {
+		  if (raw[i]==MAX_SENSOR_VALUE) { /* not measured yet? */
+			if (SensorFctArray[i].GetVal()==0) {
+			  raw[i] = timerVal;
+			}
+		  } else { /* have value */
+			cnt++;
+		  }
+		}
+	  } while(cnt!=REF_NOF_SENSORS);
+	 FRTOS1_taskEXIT_CRITICAL();
+	  /* Hier endet Critical Section */
+	  LED_IR_Off(); /* IR LED's off */
+	}
 }
 
 static void REF_CalibrateMinMax(SensorTimeType min[REF_NOF_SENSORS], SensorTimeType max[REF_NOF_SENSORS], SensorTimeType raw[REF_NOF_SENSORS]) {
@@ -557,3 +562,10 @@ void REF_Init(void) {
   }
 }
 
+void REF_turn_on(void){
+	REF_ON = TRUE;
+}
+
+void REF_turn_off(void){
+	REF_ON = FALSE;
+}

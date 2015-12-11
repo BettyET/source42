@@ -25,6 +25,9 @@ typedef enum {
 
 REF_LineKind REF_GetLineKind(void);
 
+void REF_turn_on(void);
+void REF_turn_off(void);
+
 #if PL_CONFIG_HAS_SHELL
   #include "CLS1.h"
   
