@@ -3,7 +3,7 @@
   <Header>
     <Name>RemoteControl</Name>
     <SavedBy>User</SavedBy>
-    <ModificationStamp>43</ModificationStamp>
+    <ModificationStamp>44</ModificationStamp>
     <Date>2015-09-18</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.0.RT7_b1515-0427</PEversion>
@@ -30221,8 +30221,8 @@
         <ReadOnly>false</ReadOnly>
         <UserReadOnly>false</UserReadOnly>
         <PropertyModelIsAutomatic>false</PropertyModelIsAutomatic>
-        <Index>1</Index>
-        <EnumSymbVal>RF_SETUP_RF_DR_1000</EnumSymbVal>
+        <Index>2</Index>
+        <EnumSymbVal>RF_SETUP_RF_DR_2000</EnumSymbVal>
       </ItemState>
       <ItemState>
         <ItemSymbol>PayloadSize</ItemSymbol>
