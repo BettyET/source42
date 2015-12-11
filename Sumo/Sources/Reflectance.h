@@ -45,6 +45,10 @@ void REF_turn_off(void);
   #define REF_PARSE_COMMAND_ENABLED 0
 #endif
 
+
+  void REF_GetSensorValues(uint16_t *values, int nofValues);
+
+
 /*!
  * \brief Starts or stops the calibration.
  */

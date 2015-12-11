@@ -122,6 +122,15 @@ void REF_CalibrateStartStop(void) {
 }
 #endif
 
+void REF_GetSensorValues(uint16_t *values, int nofValues) {
+  int i;
+
+  for(i=0;i<nofValues && i<REF_NOF_SENSORS;i++) {
+    values[i] = SensorCalibrated[i];
+  }
+}
+
+
 /*!
  * \brief Measures the time until the sensor discharges
  * \param raw Array to store the raw values.

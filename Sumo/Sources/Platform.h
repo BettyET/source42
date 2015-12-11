@@ -37,6 +37,8 @@
 /* Flash Speicher */
 #define PL_CONFIG_HAS_CONFIG_NVM 1
 
+#define PL_CONFIG_HAS_LINE_MAZE 1
+
 
 
 #define PL_CONFIG_HAS_PID 1
