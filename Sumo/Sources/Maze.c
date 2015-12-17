@@ -215,7 +215,7 @@ uint8_t MAZE_EvaluteTurn(bool *finished) {
 	  TURN_Turn(TURN_STEP_LINE_FW_POST_LINE, MAZE_SampleTurnStopFunction); /* do the line and beyond in one step */
 	  SHELL_ParseCmd((unsigned char*)"drive mode none");
 	  turn = MAZE_GetSolvedTurn(&indexPath);
-	  indexPath++;
+
   }
   else{
 	  currLineKind = REF_GetLineKind();
@@ -228,8 +228,12 @@ uint8_t MAZE_EvaluteTurn(bool *finished) {
 		historyLineKind = MAZE_HistoryLineKind(); /* new read new values */
 		currLineKind = REF_GetLineKind();
 		turn = MAZE_SelectTurn(historyLineKind, currLineKind);
-		MAZE_AddPath(turn);
+
 	  }
+	  if(!isSolved){
+		  MAZE_AddPath(turn);
+	  }
+  }
 	  if (turn==TURN_FINISHED) {
 		*finished = TRUE;
 		LF_StopFollowing();
@@ -261,7 +265,6 @@ uint8_t MAZE_EvaluteTurn(bool *finished) {
 	  }else { /* turn or do something */
 		/*! \todo Extend if necessary */
 		return ERR_OK; /* turn finished */
-	  }
   }
 }
 
