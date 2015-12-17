@@ -177,6 +177,7 @@ TURN_Kind MAZE_SelectTurn(REF_LineKind prev, REF_LineKind curr) {
 void MAZE_SetSolved(void) {
   isSolved = TRUE;
   MAZE_RevertPath();								// Pfad umkehren
+  MAZE_SimplifyPath();								// Pfad vereinfachen
   indexPath = 0;									// Pfad Index Null
 }
 
@@ -199,7 +200,70 @@ void MAZE_AddPath(TURN_Kind kind) {
  * For example if we have TURN_LEFT90-TURN_RIGHT180-TURN_LEFT90, this can be simplified with TURN_STRAIGHT.
  */
 void MAZE_SimplifyPath(void) {
-  /*! \todo implement simplification? */
+	int k = 0;
+	int counter = 0;
+	int i = 0;
+	TURN_Kind pathnew[MAZE_MAX_PATH];
+	do {
+		counter = 0;
+		k = 0;
+		for (i=0; i < pathLength; i++) {
+
+			if (path[i] == TURN_LEFT180) {
+				counter++;
+				if (path[i - 1] == TURN_STRAIGHT
+						&& path[i + 1] == TURN_LEFT90) {
+					path[k - 1] = TURN_RIGHT90;
+					i++;
+				} else if (path[i - 1] == TURN_LEFT90
+						&& path[i + 1] == TURN_LEFT90) {
+					path[k - 1] = TURN_STRAIGHT;
+					i++;
+				} else if (path[i - 1] == TURN_LEFT90
+						&& path[i + 1] == TURN_RIGHT90) {
+					path[k - 1] = TURN_LEFT180;
+					i++;
+				} else if (path[i - 1] == TURN_RIGHT90
+						&& path[i + 1] == TURN_LEFT90) {
+					path[k - 1] = TURN_LEFT180;
+					i++;
+				} else if (path[i - 1] == TURN_LEFT90
+						&& path[i + 1] == TURN_STRAIGHT) {
+					path[k - 1] = TURN_RIGHT90;
+					i++;
+				} else if (path[i - 1] == TURN_RIGHT90
+						&& path[i + 1] == TURN_STRAIGHT) {
+					path[k - 1] = TURN_LEFT90;
+					i++;
+				} else if (path[i - 1] == TURN_RIGHT90
+						&& path[i + 1] == TURN_RIGHT90) {
+					path[k - 1] = TURN_STRAIGHT;
+					i++;
+				} else if (path[i - 1] == TURN_STRAIGHT
+						&& path[i + 1] == TURN_RIGHT90) {
+					path[k - 1] = TURN_LEFT90;
+					i++;
+				} else if (path[i - 1] == TURN_STRAIGHT
+						&& path[i + 1] == TURN_STRAIGHT) {
+					path[k - 1] = TURN_LEFT180;
+					i++;
+				}
+				i++;
+				break;
+
+			} else {
+				k++;
+			}
+		}
+
+
+
+		for (i; i < pathLength; i++) {
+			path[k] = path[i];
+			k++;
+		}
+		pathLength = k;
+	} while (counter != 0);
 }
 
 /*!
