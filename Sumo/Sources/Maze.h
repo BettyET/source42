@@ -18,6 +18,8 @@
  */
 void MAZE_AddPath(TURN_Kind kind);
 
+void setLeftWallValue(bool value);
+bool getLeftWallValue(void);
 /*!
  * \brief Tries to simplify the path, basically cutting dead end paths.
  */

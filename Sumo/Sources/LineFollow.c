@@ -19,6 +19,7 @@
 #include "Shell.h"
 #include "Buzzer.h"
 #include "Drive.h"
+#include "Maze.h"
 
 #define LINE_DEBUG      1   /* careful: this will slow down the PID loop frequency! */
 #define LINE_FOLLOW_FW  1   /* test setting to do forward line following */
@@ -33,6 +34,7 @@ typedef enum {
 
 static volatile StateType LF_currState = STATE_IDLE;
 static volatile bool LF_stopIt = FALSE;
+
 
 void LF_StartFollowing(void) {
   PID_Start();
@@ -71,20 +73,28 @@ static bool FollowSegment(bool forward) {
 }
 
 static void StateMachine(void) {
+  bool FINISHED;
   switch (LF_currState) {
     case STATE_IDLE:
       break;
     case STATE_FOLLOW_SEGMENT:
       if (!FollowSegment(LINE_FOLLOW_FW)) {
-        LF_currState = STATE_STOP; /* stop if we do not have a line any more */
-        SHELL_SendString((unsigned char*)"No line, stopped!\r\n");
+        LF_currState = STATE_TURN; /* turn if we lost the line */
       }
+      //SHELL_SendString("Follow!\r\n");
       break;
     case STATE_TURN:
+    	//SHELL_SendString("Turn!\r\n");
       /*! \todo Handle maze turning? */
+    	MAZE_EvaluteTurn(&FINISHED);
+    	if(FINISHED){
+    		LF_currState = STATE_FINISHED;
+    	}
+      LF_currState = STATE_FOLLOW_SEGMENT;
       break;
     case STATE_FINISHED:
       /*! \todo Handle maze finished? */
+      LF_currState = STATE_STOP;
       break;
     case STATE_STOP:
       SHELL_SendString("LINE: Stop!\r\n");

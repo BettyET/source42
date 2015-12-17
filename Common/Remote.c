@@ -18,6 +18,9 @@
 #include "KeyDebounce.h"
 #ifdef PL_CONFIG_SUMO
 	#include "Reflectance.h"
+	#include "LineFollow.h"
+	#include "Maze.h"
+	#include "Buzzer.h"
 #endif
 #if PL_CONFIG_HAS_PID
   #include "PID.h"
@@ -309,7 +312,14 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
         DRV_SetMode(DRV_MODE_SPEED);
         SHELL_SendString("Remote ON\r\n");
       } else if (val=='C') { /* red 'C' button */
-        /*! \todo add functionality */
+    	  if(LF_IsFollowing())
+    	  {
+    		  LF_StopFollowing();
+    	  }
+    	  else{
+    		  LF_StartFollowing();
+    	  }
+
       } else if (val=='A') { /* green 'A' button */
         if(BOOST){
         	BOOST = FALSE;
@@ -318,6 +328,17 @@ uint8_t REMOTE_HandleRemoteRxMessage(RAPP_MSG_Type type, uint8_t size, uint8_t *
         	BOOST = TRUE;
         }
       }
+      else if(val=='B'){
+		if(getLeftWallValue()==TRUE){
+			(void)BUZ_Beep(300,200);
+			setLeftWallValue(FALSE);
+		}
+		else{
+			(void)BUZ_Beep(600,200);
+			setLeftWallValue(TRUE);
+
+		}
+	  }
 #else
       *handled = FALSE; /* no shell and no buzzer? */
 #endif
@@ -443,12 +464,21 @@ void myEvents(EVNT_Handle event)
 	case EVENT_BUTTON_1_PRESSED:
 		CLS1_SendStr("Button 1 pressed!\r\n", CLS1_GetStdio()->stdOut);
 		break;
-	case EVENT_BUTTON_2_PRESSED:
-		CLS1_SendStr("Button 2 pressed!\r\n", CLS1_GetStdio()->stdOut);
+	case EVENT_BUTTON_2_PRESSED:{
+		uint8_t buf[1];
+		buf[0] = 'B';
+		(void)RAPP_SendPayloadDataBlock(buf, sizeof(buf),  RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
 		break;
+	}
+		//CLS1_SendStr("Button 2 pressed!\r\n", CLS1_GetStdio()->stdOut);
 	case EVENT_BUTTON_3_PRESSED:
-		CLS1_SendStr("Button 3 pressed!\r\n", CLS1_GetStdio()->stdOut);
+	{
+		uint8_t buf[1];
+		buf[0] = 'C';
+		(void)RAPP_SendPayloadDataBlock(buf, sizeof(buf),  RAPP_MSG_TYPE_JOYSTICK_BTN, RNETA_GetDestAddr(), RPHY_PACKET_FLAGS_REQ_ACK);
 		break;
+		//CLS1_SendStr("Button 3 pressed!\r\n", CLS1_GetStdio()->stdOut);
+	}
 	case EVENT_BUTTON_4_PRESSED:{
 		uint8_t buf[1];
 		buf[0] = 'A';

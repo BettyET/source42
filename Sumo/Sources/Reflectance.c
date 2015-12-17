@@ -25,6 +25,7 @@
 #include "Buzzer.h"
 #include "NVM_Config.h"
 
+#define PL_APP_LINE_MAZE 1
 
 #define REF_NOF_SENSORS       6 /* number of sensors */
 #define REF_SENSOR1_IS_LEFT   1 /* sensor number one is on the left side */
@@ -373,6 +374,18 @@ static unsigned char*REF_GetStateString(void) {
   return (unsigned char*)"UNKNOWN";
 }
 
+static unsigned char*REF_GetLineKindString(REF_LineKind currentline) {
+  switch (currentline) {
+    case REF_LINE_NONE:                return (unsigned char*)"no line";
+    case REF_LINE_STRAIGHT:      	   return (unsigned char*)"straight line";
+    case REF_LINE_LEFT:     		   return (unsigned char*)"left line";
+    case REF_LINE_RIGHT:    		   return (unsigned char*)"right line";
+    case REF_LINE_FULL:     		   return (unsigned char*)"full line";
+    default:
+      break;
+  } /* switch */
+  return (unsigned char*)"UNKNOWN";
+}
 static uint8_t PrintStatus(const CLS1_StdIOType *io) {
   unsigned char buf[24];
   int i;
@@ -380,6 +393,9 @@ static uint8_t PrintStatus(const CLS1_StdIOType *io) {
   CLS1_SendStatusStr((unsigned char*)"reflectance", (unsigned char*)"\r\n", io->stdOut);
   
   CLS1_SendStatusStr((unsigned char*)"  state", REF_GetStateString(), io->stdOut);
+  CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
+
+  CLS1_SendStatusStr((unsigned char*)"  line kind", REF_GetLineKindString(ReadLineKind(SensorCalibrated)), io->stdOut);
   CLS1_SendStr((unsigned char*)"\r\n", io->stdOut);
 
   UTIL1_strcpy(buf, sizeof(buf), (unsigned char*)"0x");
